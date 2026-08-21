@@ -155,14 +155,9 @@ export default function AdminLayout({ activePage, onNavigate, children }) {
             </div>
           </div>
 
-          {/* Right Action Profile & Badge */}
+          {/* Right Action Profile */}
           <div className="flex items-center gap-3">
-            <span className="bg-emerald-500/10 border border-emerald-500/20 text-[10px] text-emerald-400 font-bold uppercase tracking-wider px-2.5 py-1 rounded-full hidden sm:inline-flex items-center gap-1.5">
-              <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              4 Demo Employees Active
-            </span>
-
-            <div className="flex items-center gap-2 pl-3 border-l border-zinc-800">
+            <div className="flex items-center gap-2">
               <div className="size-8 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center font-bold text-xs text-white shadow">
                 HR
               </div>

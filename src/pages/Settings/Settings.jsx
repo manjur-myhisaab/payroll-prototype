@@ -49,12 +49,12 @@ export default function Settings() {
   const handleResetData = () => {
     if (
       window.confirm(
-        "Are you sure you want to reset all prototype data to initial seed records? This will restore 4 employees, templates, components, and sample runs."
+        "Are you sure you want to reset all prototype data to initial seed records? This will restore standard employees, templates, components, and sample runs."
       )
     ) {
       storageService.resetToDefaults();
       loadData();
-      showToast("All prototype data reset to initial demo state!");
+      showToast("All prototype data reset to initial default state!");
       window.location.reload();
     }
   };
@@ -270,7 +270,7 @@ export default function Settings() {
                 Reset Prototype Data
               </h4>
               <p className="text-xs text-zinc-400 mt-0.5">
-                Restore all 4 demo employees, templates, salary structures, and sample runs to initial state.
+                Restore all default seed employees, templates, salary structures, and sample runs to initial state.
               </p>
             </div>
 

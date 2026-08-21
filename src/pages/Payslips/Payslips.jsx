@@ -200,14 +200,16 @@ export default function Payslips() {
                 </div>
 
                 <div>
-                  <span className="text-[10px] uppercase font-semibold text-zinc-500 block">Bank Account</span>
-                  <span className="font-mono text-zinc-300 font-semibold">
-                    {selectedPayslip.bankName} - {selectedPayslip.bankAccount}
+                  <span className="text-[10px] uppercase font-semibold text-zinc-500 block">Monthly CTC</span>
+                  <span className="font-mono font-bold text-indigo-400">
+                    {formatINR(selectedPayslip.totalCTC || (selectedPayslip.grossEarnings + (selectedPayslip.employerCost || 0)))} / mo
                   </span>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase font-semibold text-zinc-500 block">IFSC Code</span>
-                  <span className="font-mono text-zinc-300 font-semibold">{selectedPayslip.ifscCode}</span>
+                  <span className="text-[10px] uppercase font-semibold text-zinc-500 block">Annual CTC</span>
+                  <span className="font-mono font-bold text-purple-400">
+                    {formatINR((selectedPayslip.totalCTC || (selectedPayslip.grossEarnings + (selectedPayslip.employerCost || 0))) * 12)} / yr
+                  </span>
                 </div>
                 <div>
                   <span className="text-[10px] uppercase font-semibold text-zinc-500 block">PAN / UAN</span>

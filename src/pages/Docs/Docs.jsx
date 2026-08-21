@@ -36,6 +36,12 @@ import {
   Shield,
   Briefcase,
   Gift,
+  Database,
+  Server,
+  Key,
+  Cpu,
+  FolderGit2,
+  Table,
 } from "lucide-react";
 
 export default function Docs() {
@@ -50,6 +56,7 @@ export default function Docs() {
     { id: "incentives_bonuses", label: "Incentives & Bonuses", icon: Sparkles, count: "Bonus Act" },
     { id: "loans_advances", label: "Loans & Salary Advances", icon: DollarSign, count: "Recovery" },
     { id: "payroll_lifecycle", label: "Payroll Run Lifecycle", icon: PlayCircle, count: "4 Steps" },
+    { id: "database_schema", label: "Database Schema & Architecture Patterns", icon: Database, count: "12 Collections" },
   ];
 
   return (
@@ -869,7 +876,7 @@ export default function Docs() {
               Overtime Calculation & Indian Factories Act Compliance
             </h3>
             <p className="text-zinc-300">
-              Under Section 59 of the Factories Act, 1948, when an employee works in any factory for more than 9 hours in any day or for more than 48 hours in any week, they are entitled to overtime wages at <strong>twice the ordinary rate of wages (2.0x Double Pay)</strong>.
+              Under <strong>Section 59 of the Factories Act, 1948</strong>, when an employee works in any factory for more than 9 hours in any day or for more than 48 hours in any week, they are entitled to overtime wages at <strong>twice the ordinary rate of wages (2.0x Double Pay)</strong>.
             </p>
           </div>
 
@@ -882,17 +889,51 @@ export default function Docs() {
             </div>
 
             <div className="p-4 bg-zinc-950 border border-zinc-800 rounded-xl space-y-2">
-              <span className="font-bold text-blue-400 text-xs">Sunday / Week-off Work</span>
+              <span className="font-bold text-blue-400 text-xs">Sunday / Week-off Work Extra Pay</span>
               <p className="text-zinc-400 text-[11px]">
-                Working on designated weekly rest day. System provides <strong>2.0x Multiplier</strong> + optional compensatory off (Comp-off).
+                Working on designated weekly rest day. When Extra Pay is enabled, employee receives <strong>2.0x Double Pay Multiplier</strong> for the hours/day worked.
               </p>
             </div>
 
             <div className="p-4 bg-zinc-950 border border-zinc-800 rounded-xl space-y-2">
-              <span className="font-bold text-purple-400 text-xs">Statutory Festival Holiday</span>
+              <span className="font-bold text-purple-400 text-xs">Statutory Festival Holiday Work Extra Pay</span>
               <p className="text-zinc-400 text-[11px]">
-                Working on declared National Holidays (Republic Day, Independence Day, Gandhi Jayanti). Compensated at <strong>2.5x to 3.0x</strong> rate.
+                Working on declared National Holidays (Republic Day, Independence Day, Gandhi Jayanti). Compensated at <strong>2.5x to 3.0x</strong> festival holiday multiplier.
               </p>
+            </div>
+          </div>
+
+          {/* REAL NUMERICAL EXAMPLES OF OVERTIME & EXTRA WORK PAY */}
+          <div className="p-5 bg-zinc-900/60 border border-amber-500/40 rounded-2xl space-y-4">
+            <h4 className="font-bold text-zinc-100 text-xs uppercase tracking-wider flex items-center gap-2">
+              <Calculator className="size-4 text-amber-400" />
+              Real-World Numerical Calculation Walkthroughs
+            </h4>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Example 1: Daily Worker on Sunday */}
+              <div className="p-4 bg-zinc-950 rounded-xl border border-zinc-800 space-y-2">
+                <strong className="text-blue-300 text-xs block font-bold">
+                  Case A: Daily Wage Worker (Ramesh Kumar @ ₹850/day) works 1 Sunday (Week-off Extra Pay @ 2.0x)
+                </strong>
+                <p className="text-zinc-400 text-[11px]">
+                  • Ordinary Hourly Wage: <code className="text-zinc-200">₹850 ÷ 8 hrs = ₹106.25 / hr</code><br />
+                  • Sunday Work Rate (2.0x Double): <code className="text-zinc-200">₹106.25 × 2.0 = ₹212.50 / hr</code><br />
+                  • 8 Hours Sunday Payout: <code className="text-emerald-400 font-bold">8 × ₹212.50 = ₹1,700 Extra Sunday Pay</code>
+                </p>
+              </div>
+
+              {/* Example 2: Hourly Consultant on Holiday */}
+              <div className="p-4 bg-zinc-950 rounded-xl border border-zinc-800 space-y-2">
+                <strong className="text-purple-300 text-xs block font-bold">
+                  Case B: Hourly Consultant (Deepa Krishnan @ ₹450/hr) works 6h on Independence Day (Holiday Extra Pay @ 2.5x)
+                </strong>
+                <p className="text-zinc-400 text-[11px]">
+                  • Base Hourly Wage: <code className="text-zinc-200">₹450 / hr</code><br />
+                  • Holiday Multiplier (2.5x): <code className="text-zinc-200">₹450 × 2.5 = ₹1,125 / hr</code><br />
+                  • 6 Hours Holiday Payout: <code className="text-emerald-400 font-bold">6 × ₹1,125 = ₹6,750 Extra Holiday Pay</code>
+                </p>
+              </div>
             </div>
           </div>
 
@@ -949,17 +990,38 @@ export default function Docs() {
             </div>
 
             <div className="p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-2">
-              <span className="font-bold text-emerald-400 text-xs">2. Sales Performance Incentives</span>
+              <span className="font-bold text-emerald-400 text-xs">2. Sales Performance Commission</span>
               <p className="text-zinc-400 text-[11px]">
-                Direct monthly commission paid on verified target achievements (e.g. 5% on closed revenue). Added to monthly gross as fully taxable earning.
+                Direct monthly commission paid on verified target achievements (e.g. ₹15,000 for closing an enterprise deal). Added to monthly gross as fully taxable earning.
               </p>
             </div>
 
             <div className="p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-2">
-              <span className="font-bold text-amber-400 text-xs">3. Festive / Diwali Discretionary Bonus</span>
+              <span className="font-bold text-amber-400 text-xs">3. Festive / Spot Achievement Reward</span>
               <p className="text-zinc-400 text-[11px]">
-                One-time company-wide festive distribution. Can be allocated as a flat lump-sum or % of annual basic during festival payroll runs.
+                One-time spot awards (e.g. ₹5,000 zero-defect app delivery bonus or ₹2,500 Independence Day cultural spot reward).
               </p>
+            </div>
+          </div>
+
+          {/* BONUS CALCULATION WALKTHROUGH */}
+          <div className="p-5 bg-zinc-950 rounded-2xl border border-zinc-800 space-y-3">
+            <h4 className="font-bold text-zinc-100 text-xs uppercase tracking-wider">
+              Statutory Bonus Mathematical Example (Section 10 of Bonus Act):
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-[11px]">
+              <div className="p-3 bg-zinc-900 rounded-xl border border-zinc-800 space-y-1">
+                <span className="text-zinc-500 block text-[10px]">Wage Ceiling:</span>
+                <strong className="text-zinc-200">₹7,000 / month</strong>
+              </div>
+              <div className="p-3 bg-zinc-900 rounded-xl border border-zinc-800 space-y-1">
+                <span className="text-zinc-500 block text-[10px]">Minimum Rate (8.33%):</span>
+                <strong className="text-amber-400">₹583.10 / mo (₹6,997 / yr)</strong>
+              </div>
+              <div className="p-3 bg-zinc-900 rounded-xl border border-zinc-800 space-y-1">
+                <span className="text-zinc-500 block text-[10px]">Maximum Rate (20.0%):</span>
+                <strong className="text-emerald-400">₹1,400 / mo (₹16,800 / yr)</strong>
+              </div>
             </div>
           </div>
         </div>
@@ -1052,7 +1114,7 @@ export default function Docs() {
                   </li>
                   <li>
                     <strong className="text-zinc-200">Compute Earned Gross:</strong><br />
-                    <code className="text-emerald-300 bg-zinc-950 px-1.5 py-0.5 rounded">Earned Gross = Monthly Gross − LOP Deduction</code>
+                    <code className="text-emerald-300 bg-zinc-950 px-1.5 py-0.5 rounded">Earned Gross = Monthly Gross − LOP Deduction + Overtime + Incentives</code>
                   </li>
                   <li>
                     <strong className="text-zinc-200">Pro-rate Individual Components:</strong><br />
@@ -1068,24 +1130,24 @@ export default function Docs() {
               {/* Concrete Example Box */}
               <div className="p-4 bg-zinc-950 rounded-xl border border-zinc-800 space-y-2">
                 <span className="text-[10px] uppercase font-bold text-indigo-400 tracking-wider block">
-                  Concrete Example: Rahul Sharma (Annual CTC ₹12,00,000 • ₹1,00,000/mo) in August (31 Days with 2 Unpaid LOP Days)
+                  Concrete Example: Rahul Sharma (Annual CTC ₹12,00,000 • ₹1,00,000/mo) in August (31 Days, 8h Approved OT @ ₹300/h = ₹2,400 + ₹5,000 Spot Bonus)
                 </span>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-[11px]">
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">Monthly Gross:</span>
+                    <span className="text-zinc-500 block text-[10px]">Monthly Base Gross:</span>
                     <strong className="text-zinc-200">₹92,300</strong>
                   </div>
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">Per-Day Wage (31d):</span>
-                    <strong className="text-zinc-200">₹2,977.42 / day</strong>
+                    <span className="text-zinc-500 block text-[10px]">OT & Spot Bonus:</span>
+                    <strong className="text-emerald-400">+ ₹7,400</strong>
                   </div>
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">2 Days LOP Deduct:</span>
-                    <strong className="text-rose-400">- ₹5,955</strong>
+                    <span className="text-zinc-500 block text-[10px]">EPF + PT + TDS:</span>
+                    <strong className="text-rose-400">- ₹6,500</strong>
                   </div>
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
                     <span className="text-zinc-500 block text-[10px]">Net Take-Home:</span>
-                    <strong className="text-emerald-400">₹77,645</strong>
+                    <strong className="text-indigo-400 font-bold">₹93,200</strong>
                   </div>
                 </div>
               </div>
@@ -1111,23 +1173,19 @@ export default function Docs() {
                 <ol className="list-decimal pl-5 space-y-1.5 text-[11px] text-zinc-400">
                   <li>
                     <strong className="text-zinc-200">Count Physical Present Days:</strong><br />
-                    Obtained directly from biometric punch logs (e.g. 24 days physically present).
+                    Obtained directly from biometric punch logs (e.g. 26 physical days present @ ₹850/day = ₹22,100).
                   </li>
                   <li>
-                    <strong className="text-zinc-200">Evaluate Paid Week-Off Policy:</strong><br />
-                    If company settings mandate <strong>Paid Weekly Off</strong> under Factories Act, count weekly rest days (e.g. 4 Sundays) as payable days: <code className="text-emerald-300 bg-zinc-950 px-1.5 py-0.5 rounded">Total Payable Days = 24 Present + 4 Sundays = 28 Days</code>.
+                    <strong className="text-zinc-200">Evaluate Paid Week-Off & Holiday Policies:</strong><br />
+                    If company settings or worker profile has <strong>Paid Week-offs / Holidays</strong>: add 4 Sundays (4 × ₹850 = ₹3,400) + 1 Holiday (1 × ₹850 = ₹850).
                   </li>
                   <li>
-                    <strong className="text-zinc-200">Calculate Base Gross Wages:</strong><br />
-                    <code className="text-emerald-300 bg-zinc-950 px-1.5 py-0.5 rounded">Base Wages = Total Payable Days × Daily Rate (e.g. 28 × ₹650 = ₹18,200)</code>
+                    <strong className="text-zinc-200">Add Sunday / Holiday Work Extra Pay (2.0x / 2.5x Multiplier):</strong><br />
+                    If employee physically worked on Sunday or declared holiday with Extra Pay Enabled, apply <strong>2.0x Double Multiplier</strong> or <strong>2.5x Holiday Multiplier</strong>.
                   </li>
                   <li>
-                    <strong className="text-zinc-200">Add Sunday / Holiday Overtime:</strong><br />
-                    If employee worked on Sunday or declared holiday with Extra Pay Enabled, apply <strong>2.0x Double Multiplier</strong> for extra hours worked.
-                  </li>
-                  <li>
-                    <strong className="text-zinc-200">Apply Statutory Deductions:</strong><br />
-                    If Total Monthly Gross $\le$ ₹21,000 $\rightarrow$ Deduct <strong>ESIC (0.75%)</strong>. Deduct EPF (12% of Basic portion) if applicable − Mid-month Advance Recovery = <strong>Net Cash Payout</strong>.
+                    <strong className="text-zinc-200">Apply Statutory Deductions & Advance Recovery:</strong><br />
+                    If Total Monthly Gross $\le$ ₹21,000 $\rightarrow$ Deduct <strong>ESIC (0.75%)</strong>. Deduct mid-month salary advance 100% full recovery = <strong>Net Cash Payout</strong>.
                   </li>
                 </ol>
               </div>
@@ -1135,24 +1193,24 @@ export default function Docs() {
               {/* Concrete Example Box */}
               <div className="p-4 bg-zinc-950 rounded-xl border border-zinc-800 space-y-2">
                 <span className="text-[10px] uppercase font-bold text-emerald-400 tracking-wider block">
-                  Concrete Example: Ramesh Kumar (Daily Rate ₹650/day • 24 Present Days + 4 Paid Sundays)
+                  Concrete Example: Ramesh Kumar (Daily Rate ₹850/day • 26 Present Days + 4 Paid Sundays + 1 Paid Holiday)
                 </span>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-[11px]">
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">Present Work (24d):</span>
-                    <strong className="text-zinc-200">₹15,600</strong>
+                    <span className="text-zinc-500 block text-[10px]">26 Present Days:</span>
+                    <strong className="text-zinc-200">₹22,100</strong>
                   </div>
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">Paid Week-Off (4d):</span>
-                    <strong className="text-blue-300">+ ₹2,600</strong>
+                    <span className="text-zinc-500 block text-[10px]">4 Sundays + 1 Holiday:</span>
+                    <strong className="text-blue-300">+ ₹4,250</strong>
                   </div>
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">ESIC Deduct (0.75%):</span>
-                    <strong className="text-rose-400">- ₹137</strong>
+                    <span className="text-zinc-500 block text-[10px]">PT Deduction:</span>
+                    <strong className="text-rose-400">- ₹200</strong>
                   </div>
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">Net Payout:</span>
-                    <strong className="text-emerald-400">₹18,063</strong>
+                    <span className="text-zinc-500 block text-[10px]">Net Take-Home:</span>
+                    <strong className="text-emerald-400 font-bold">₹26,150</strong>
                   </div>
                 </div>
               </div>
@@ -1178,23 +1236,19 @@ export default function Docs() {
                 <ol className="list-decimal pl-5 space-y-1.5 text-[11px] text-zinc-400">
                   <li>
                     <strong className="text-zinc-200">Import & Verify Total Time-Sheet Hours:</strong><br />
-                    Aggregate all punch-in to punch-out timestamps in the month (e.g. 176 total hours).
-                  </li>
-                  <li>
-                    <strong className="text-zinc-200">Split into Regular vs Overtime Hours:</strong><br />
-                    Standard Monthly Quota = 160 Hours (20 days × 8 hrs). Excess Hours = 16 Hours Overtime.
+                    Aggregate verified biometric/timesheet hours in the month (e.g. 110 logged hours).
                   </li>
                   <li>
                     <strong className="text-zinc-200">Compute Regular Hours Pay:</strong><br />
-                    <code className="text-cyan-300 bg-zinc-950 px-1.5 py-0.5 rounded">Regular Pay = 160 Hours × ₹450/hr = ₹72,000</code>
+                    <code className="text-cyan-300 bg-zinc-950 px-1.5 py-0.5 rounded">Regular Pay = 110 Hours × ₹450/hr = ₹49,500</code>
                   </li>
                   <li>
-                    <strong className="text-zinc-200">Compute Overtime at Policy Multiplier (1.5x):</strong><br />
-                    <code className="text-amber-300 bg-zinc-950 px-1.5 py-0.5 rounded">OT Pay = 16 Hours × (₹450 × 1.5) = 16 × ₹675 = ₹10,800</code>
+                    <strong className="text-zinc-200">Compute Shift Extension / Overtime (if excess hours &gt; 160h):</strong><br />
+                    Overtime Pay = <code className="text-amber-300 bg-zinc-950 px-1.5 py-0.5 rounded">Excess Hours × Hourly Rate × 1.5x Multiplier</code>
                   </li>
                   <li>
-                    <strong className="text-zinc-200">Total Gross & Tax Withholding:</strong><br />
-                    Total Gross = ₹72,000 + ₹10,800 = <strong>₹82,800</strong>. Deduct TDS / Professional Tax = <strong>Net Take-Home</strong>.
+                    <strong className="text-zinc-200">Total Gross & Deductions:</strong><br />
+                    Total Gross = ₹49,500. Deduct Professional Tax (₹200) = <strong>₹49,300 Net Take-Home</strong>.
                   </li>
                 </ol>
               </div>
@@ -1202,24 +1256,24 @@ export default function Docs() {
               {/* Concrete Example Box */}
               <div className="p-4 bg-zinc-950 rounded-xl border border-zinc-800 space-y-2">
                 <span className="text-[10px] uppercase font-bold text-cyan-400 tracking-wider block">
-                  Concrete Example: Deepa Krishnan (Hourly Rate ₹450/hr • 160 Regular Hours + 16 OT Hours at 1.5x)
+                  Concrete Example: Deepa Krishnan (Hourly Rate ₹450/hr • 110 Logged Hours in August)
                 </span>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-[11px]">
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">Regular Pay (160h):</span>
-                    <strong className="text-zinc-200">₹72,000</strong>
+                    <span className="text-zinc-500 block text-[10px]">Logged Hours:</span>
+                    <strong className="text-zinc-200">110 Hours</strong>
                   </div>
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">Overtime Pay (16h):</span>
-                    <strong className="text-amber-400">+ ₹10,800</strong>
+                    <span className="text-zinc-500 block text-[10px]">Gross Pay (₹450/h):</span>
+                    <strong className="text-cyan-300">₹49,500</strong>
                   </div>
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
                     <span className="text-zinc-500 block text-[10px]">Professional Tax:</span>
                     <strong className="text-rose-400">- ₹200</strong>
                   </div>
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">Net Payout:</span>
-                    <strong className="text-cyan-400">₹82,600</strong>
+                    <span className="text-zinc-500 block text-[10px]">Net Bank Transfer:</span>
+                    <strong className="text-cyan-400 font-bold">₹49,300</strong>
                   </div>
                 </div>
               </div>
@@ -1245,19 +1299,19 @@ export default function Docs() {
                 <ol className="list-decimal pl-5 space-y-1.5 text-[11px] text-zinc-400">
                   <li>
                     <strong className="text-zinc-200">Import Verified Finished Units:</strong><br />
-                    Production supervisor verifies finished items (e.g. 1,700 stitched garments). Subtract defective/rejected items (50 units) = <strong>1,650 Verified Net Units</strong>.
+                    Production supervisor verifies finished items (e.g. 1,400 fabricated precision metal parts @ ₹18/unit).
                   </li>
                   <li>
                     <strong className="text-zinc-200">Calculate Base Piece-Rate Wages:</strong><br />
-                    <code className="text-purple-300 bg-zinc-950 px-1.5 py-0.5 rounded">Piece Earnings = 1,650 Units × ₹18/unit = ₹29,700</code>
+                    <code className="text-purple-300 bg-zinc-950 px-1.5 py-0.5 rounded">Piece Earnings = 1,400 Units × ₹18/unit = ₹25,200</code>
                   </li>
                   <li>
-                    <strong className="text-zinc-200">Evaluate Production Efficiency Bonus:</strong><br />
-                    If units produced exceed monthly benchmark quota (e.g. &gt; 1,500 units), add target achievement bonus of ₹2,000.
+                    <strong className="text-zinc-200">Add Efficiency / Target Bonus:</strong><br />
+                    Add high-output performance bonus of ₹2,000 for meeting benchmark targets.
                   </li>
                   <li>
-                    <strong className="text-zinc-200">Compute Gross & Statutory Net Pay:</strong><br />
-                    Total Gross = ₹29,700 + ₹2,000 = <strong>₹31,700</strong>. Subtract mid-month wage advances = <strong>Net Cash Transferred</strong>.
+                    <strong className="text-zinc-200">Compute Gross & Net Pay:</strong><br />
+                    Total Gross = ₹25,200 + ₹2,000 = <strong>₹27,200</strong>.
                   </li>
                 </ol>
               </div>
@@ -1265,24 +1319,24 @@ export default function Docs() {
               {/* Concrete Example Box */}
               <div className="p-4 bg-zinc-950 rounded-xl border border-zinc-800 space-y-2">
                 <span className="text-[10px] uppercase font-bold text-purple-400 tracking-wider block">
-                  Concrete Example: Manoj Yadav (Piece Rate ₹18/unit • 1,650 Verified Units + Target Bonus)
+                  Concrete Example: Manoj Yadav (Piece Rate ₹18/unit • 1,400 Units Produced + Target Bonus)
                 </span>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-[11px]">
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">1,650 Units Produced:</span>
-                    <strong className="text-zinc-200">₹29,700</strong>
+                    <span className="text-zinc-500 block text-[10px]">1,400 Units Output:</span>
+                    <strong className="text-zinc-200">₹25,200</strong>
                   </div>
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">Target Bonus:</span>
+                    <span className="text-zinc-500 block text-[10px]">Efficiency Bonus:</span>
                     <strong className="text-purple-300">+ ₹2,000</strong>
                   </div>
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">Mid-Month Advance:</span>
-                    <strong className="text-rose-400">- ₹5,000</strong>
+                    <span className="text-zinc-500 block text-[10px]">Total Gross:</span>
+                    <strong className="text-emerald-400 font-bold">₹27,200</strong>
                   </div>
                   <div className="p-2 bg-zinc-900 rounded border border-zinc-800">
-                    <span className="text-zinc-500 block text-[10px]">Net Bank Pay:</span>
-                    <strong className="text-emerald-400">₹26,700</strong>
+                    <span className="text-zinc-500 block text-[10px]">Net Bank Transfer:</span>
+                    <strong className="text-purple-400 font-bold">₹27,200</strong>
                   </div>
                 </div>
               </div>
@@ -1337,7 +1391,375 @@ export default function Docs() {
           </div>
         </div>
       )}
+      {/* ========================================================================= */}
+      {/* TAB 8: DATABASE SCHEMA & ARCHITECTURE PATTERNS */}
+      {/* ========================================================================= */}
+      {activeTab === "database_schema" && (
+        <div className="space-y-6 text-xs leading-relaxed">
+          {/* Header */}
+          <div className="bg-zinc-900/60 border border-zinc-800/80 p-5 rounded-2xl space-y-3">
+            <div className="flex items-center gap-2.5">
+              <div className="p-2 bg-indigo-600/20 rounded-xl border border-indigo-500/40 text-indigo-400">
+                <Database className="size-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-zinc-100">
+                  Database Schema & System Architecture Patterns
+                </h3>
+                <span className="text-[11px] text-zinc-400 block">
+                  12 Storage Collections, SCD Type-2 Temporal History, Multi-Wage Polymorphism & Immutable Payroll Ledgers
+                </span>
+              </div>
+            </div>
+            <p className="text-zinc-300">
+              The Hisaab Payroll prototype utilizes a <strong>Normalized Document Store Schema</strong> backed by a resilient <code className="text-indigo-300 bg-zinc-950 px-1.5 py-0.5 rounded">storageService</code> abstraction facade. Every entity, transaction log, and compliance policy is modeled following industry-standard enterprise ERP patterns:
+            </p>
+          </div>
+
+          {/* SYSTEM ARCHITECTURE FLOW PIPELINE */}
+          <div className="p-5 bg-zinc-950 rounded-2xl border border-zinc-800 space-y-4">
+            <h4 className="font-bold text-zinc-100 text-xs uppercase tracking-wider flex items-center gap-2">
+              <FolderGit2 className="size-4 text-indigo-400" />
+              Enterprise Data Flow & Relational Dependency Graph
+            </h4>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 font-mono text-[11px]">
+              <div className="p-3 bg-zinc-900/90 rounded-xl border border-zinc-800 space-y-2">
+                <span className="px-2 py-0.5 bg-blue-950 text-blue-300 border border-blue-800 rounded font-bold text-[10px] uppercase">
+                  1. Master Data Layer
+                </span>
+                <p className="text-zinc-400 text-[10px] font-sans">
+                  • <code className="text-zinc-200">hisaab_payroll_settings</code><br />
+                  • <code className="text-zinc-200">hisaab_salary_components</code><br />
+                  • <code className="text-zinc-200">hisaab_salary_templates</code><br />
+                  • <code className="text-zinc-200">hisaab_employees</code>
+                </p>
+              </div>
+
+              <div className="p-3 bg-zinc-900/90 rounded-xl border border-zinc-800 space-y-2">
+                <span className="px-2 py-0.5 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded font-bold text-[10px] uppercase">
+                  2. Temporal Comp & Logs
+                </span>
+                <p className="text-zinc-400 text-[10px] font-sans">
+                  • <code className="text-emerald-300">hisaab_employee_salaries (SCD-2)</code><br />
+                  • <code className="text-zinc-200">hisaab_attendance (Biometric)</code><br />
+                  • <code className="text-zinc-200">hisaab_overtime (Approved)</code><br />
+                  • <code className="text-zinc-200">hisaab_incentives (Bonuses)</code>
+                </p>
+              </div>
+
+              <div className="p-3 bg-zinc-900/90 rounded-xl border border-zinc-800 space-y-2">
+                <span className="px-2 py-0.5 bg-amber-950 text-amber-300 border border-amber-800 rounded font-bold text-[10px] uppercase">
+                  3. Recovery & Ledgers
+                </span>
+                <p className="text-zinc-400 text-[10px] font-sans">
+                  • <code className="text-amber-300">hisaab_salary_advances (100%)</code><br />
+                  • <code className="text-amber-300">hisaab_loans (Amortized EMI)</code><br />
+                  • <code className="text-zinc-200">hisaab_reimbursements (Claims)</code>
+                </p>
+              </div>
+
+              <div className="p-3 bg-zinc-900/90 rounded-xl border border-zinc-800 space-y-2">
+                <span className="px-2 py-0.5 bg-purple-950 text-purple-300 border border-purple-800 rounded font-bold text-[10px] uppercase">
+                  4. Immutable Execution
+                </span>
+                <p className="text-zinc-400 text-[10px] font-sans">
+                  • <code className="text-purple-300">hisaab_payroll_runs (Locked)</code><br />
+                  • <code className="text-purple-300">hisaab_payslips (Artifacts)</code><br />
+                  • NEFT Bank Sheet CSV<br />
+                  • EPFO ECR Return TXT
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* THE 12 CORE DATABASE COLLECTIONS WITH SCHEMA DETAILS */}
+          <div className="space-y-4">
+            <h4 className="font-bold text-zinc-100 text-sm flex items-center gap-2">
+              <Table className="size-4 text-indigo-400" />
+              The 12 Core Database Collections & Field Structures
+            </h4>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* 1. hisaab_payroll_settings */}
+              <div className="p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-2">
+                <div className="flex items-center justify-between pb-1 border-b border-zinc-800">
+                  <span className="font-mono font-bold text-indigo-400 text-xs">1. hisaab_payroll_settings</span>
+                  <span className="text-[10px] px-1.5 py-0.5 bg-zinc-800 text-zinc-300 rounded font-mono">Singleton Object</span>
+                </div>
+                <p className="text-zinc-400 text-[11px]">
+                  Global organization parameters, statutory tax registration IDs, and company-wide computation switches.
+                </p>
+                <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800 font-mono text-[10px] text-zinc-300 space-y-0.5">
+                  <div><span className="text-indigo-400">companyName</span>: string, <span className="text-indigo-400">companyPan</span>: string, <span className="text-indigo-400">companyTan</span>: string</div>
+                  <div><span className="text-indigo-400">lopDivisor</span>: <span className="text-amber-400">"CALENDAR_DAYS" | "FIXED_30"</span></div>
+                  <div><span className="text-indigo-400">pfCappingEnabled</span>: boolean, <span className="text-indigo-400">pfWageCeiling</span>: number (15000)</div>
+                  <div><span className="text-indigo-400">esiGrossLimit</span>: number (21000), <span className="text-indigo-400">esiEmployeeRate</span>: number (0.75)</div>
+                  <div><span className="text-indigo-400">paidWeeklyOffEnabled</span>: boolean, <span className="text-indigo-400">paidStatutoryHolidaysEnabled</span>: boolean</div>
+                </div>
+              </div>
+
+              {/* 2. hisaab_salary_components */}
+              <div className="p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-2">
+                <div className="flex items-center justify-between pb-1 border-b border-zinc-800">
+                  <span className="font-mono font-bold text-emerald-400 text-xs">2. hisaab_salary_components</span>
+                  <span className="text-[10px] px-1.5 py-0.5 bg-zinc-800 text-zinc-300 rounded font-mono">Master Array</span>
+                </div>
+                <p className="text-zinc-400 text-[11px]">
+                  Master salary catalog defining calculation formulas, tax treatment, and multi-component base relationships.
+                </p>
+                <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800 font-mono text-[10px] text-zinc-300 space-y-0.5">
+                  <div><span className="text-emerald-400">id</span>: string (e.g. "COMP_HRA"), <span className="text-emerald-400">code</span>: string ("HRA")</div>
+                  <div><span className="text-emerald-400">type</span>: <span className="text-amber-400">"EARNING" | "DEDUCTION" | "EMPLOYER_CONTRIBUTION" | "REIMBURSEMENT"</span></div>
+                  <div><span className="text-emerald-400">calculationMethod</span>: <span className="text-amber-400">"PERCENTAGE" | "FIXED" | "BALANCE" | "RULE"</span></div>
+                  <div><span className="text-emerald-400">percentageBaseType</span>: <span className="text-amber-400">"CTC" | "COMPONENTS"</span>, <span className="text-emerald-400">baseComponentIds</span>: string[]</div>
+                  <div><span className="text-emerald-400">isProrated</span>: boolean, <span className="text-emerald-400">taxTreatment</span>: <span className="text-amber-400">"TAXABLE" | "EXEMPT" | "NON_TAXABLE"</span></div>
+                </div>
+              </div>
+
+              {/* 3. hisaab_salary_templates */}
+              <div className="p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-2">
+                <div className="flex items-center justify-between pb-1 border-b border-zinc-800">
+                  <span className="font-mono font-bold text-cyan-400 text-xs">3. hisaab_salary_templates</span>
+                  <span className="text-[10px] px-1.5 py-0.5 bg-zinc-800 text-zinc-300 rounded font-mono">Blueprint Archetype</span>
+                </div>
+                <p className="text-zinc-400 text-[11px]">
+                  Reusable structure blueprints allowing bulk salary configuration across engineering, sales, or ops departments.
+                </p>
+                <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800 font-mono text-[10px] text-zinc-300 space-y-0.5">
+                  <div><span className="text-cyan-400">id</span>: string ("TPL_DEV_STD"), <span className="text-cyan-400">name</span>: string ("Developer Standard")</div>
+                  <div><span className="text-cyan-400">salaryBasis</span>: <span className="text-amber-400">"CTC_BASED" | "GROSS_BASED"</span>, <span className="text-cyan-400">status</span>: "ACTIVE"</div>
+                  <div><span className="text-cyan-400">components</span>: Array&lt;&#123; componentId, calculationMethod, value, basedOn, priority &#125;&gt;</div>
+                </div>
+              </div>
+
+              {/* 4. hisaab_employees */}
+              <div className="p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-2">
+                <div className="flex items-center justify-between pb-1 border-b border-zinc-800">
+                  <span className="font-mono font-bold text-purple-400 text-xs">4. hisaab_employees</span>
+                  <span className="text-[10px] px-1.5 py-0.5 bg-zinc-800 text-zinc-300 rounded font-mono">Master Entity</span>
+                </div>
+                <p className="text-zinc-400 text-[11px]">
+                  Employee master directory containing personal records, statutory bank accounts, PAN/UAN, and wage driver classification.
+                </p>
+                <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800 font-mono text-[10px] text-zinc-300 space-y-0.5">
+                  <div><span className="text-purple-400">id</span>: string ("EMP001"), <span className="text-purple-400">name</span>: string, <span className="text-purple-400">department</span>: string</div>
+                  <div><span className="text-purple-400">payType</span>: <span className="text-amber-400">"MONTHLY_SALARIED" | "DAILY_WAGE" | "HOURLY" | "PIECE_RATE"</span></div>
+                  <div><span className="text-purple-400">taxRegime</span>: <span className="text-amber-400">"NEW" | "OLD"</span>, <span className="text-purple-400">joiningDate</span>: string</div>
+                  <div><span className="text-purple-400">bankAccount</span>: string, <span className="text-purple-400">ifscCode</span>: string, <span className="text-purple-400">pan</span>: string, <span className="text-purple-400">uan</span>: string</div>
+                </div>
+              </div>
+
+              {/* 5. hisaab_employee_salaries (SCD Type-2) */}
+              <div className="p-4 bg-zinc-900/60 border border-indigo-500/50 rounded-xl space-y-2 shadow-lg shadow-indigo-950/20">
+                <div className="flex items-center justify-between pb-1 border-b border-zinc-800">
+                  <span className="font-mono font-bold text-indigo-300 text-xs">5. hisaab_employee_salaries</span>
+                  <span className="text-[10px] px-2 py-0.5 bg-indigo-950 text-indigo-300 border border-indigo-800 rounded font-mono font-bold">SCD-2 Temporal</span>
+                </div>
+                <p className="text-zinc-400 text-[11px]">
+                  Time-versioned compensation structure. Stores historical appraisals with <code className="text-indigo-300">effectiveFrom</code> and <code className="text-indigo-300">effectiveTo</code> date intervals.
+                </p>
+                <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800 font-mono text-[10px] text-zinc-300 space-y-0.5">
+                  <div><span className="text-indigo-300">id</span>: string ("SAL_EMP001_V2"), <span className="text-indigo-300">employeeId</span>: string ("EMP001")</div>
+                  <div><span className="text-indigo-300">annualCTC</span>: number, <span className="text-indigo-300">dailyRate</span>: number, <span className="text-indigo-300">hourlyRate</span>: number, <span className="text-indigo-300">pieceRate</span>: number</div>
+                  <div><span className="text-indigo-300">effectiveFrom</span>: string ("2026-04-01"), <span className="text-indigo-300">effectiveTo</span>: string | null</div>
+                  <div><span className="text-indigo-300">weekOffPolicy</span>: string, <span className="text-indigo-300">holidayPolicy</span>: string, <span className="text-indigo-300">overtimeEnabled</span>: boolean</div>
+                  <div><span className="text-indigo-300">regularOtMultiplier</span>: number (1.5), <span className="text-indigo-300">weekOffOtMultiplier</span>: number (2.0)</div>
+                  <div><span className="text-indigo-300">assignedComponents</span>: Array&lt;&#123; componentId, calculationMethod, value, basedOn &#125;&gt;</div>
+                </div>
+              </div>
+
+              {/* 6. hisaab_attendance */}
+              <div className="p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-2">
+                <div className="flex items-center justify-between pb-1 border-b border-zinc-800">
+                  <span className="font-mono font-bold text-amber-400 text-xs">6. hisaab_attendance</span>
+                  <span className="text-[10px] px-1.5 py-0.5 bg-zinc-800 text-zinc-300 rounded font-mono">Time-Series Snapshot</span>
+                </div>
+                <p className="text-zinc-400 text-[11px]">
+                  Monthly biometric attendance summary driving LOP deductions, daily wages, and timesheet hours.
+                </p>
+                <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800 font-mono text-[10px] text-zinc-300 space-y-0.5">
+                  <div><span className="text-amber-400">employeeId</span>: string, <span className="text-amber-400">month</span>: string ("2026-08"), <span className="text-amber-400">totalDays</span>: 31</div>
+                  <div><span className="text-amber-400">presentDays</span>: number (26), <span className="text-amber-400">weeklyOffs</span>: number (4), <span className="text-amber-400">holidays</span>: number (1)</div>
+                  <div><span className="text-amber-400">payableDays</span>: number, <span className="text-amber-400">lopDays</span>: number, <span className="text-amber-400">hoursWorked</span>: number, <span className="text-amber-400">unitsProduced</span>: number</div>
+                </div>
+              </div>
+
+              {/* 7. hisaab_overtime */}
+              <div className="p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-2">
+                <div className="flex items-center justify-between pb-1 border-b border-zinc-800">
+                  <span className="font-mono font-bold text-rose-400 text-xs">7. hisaab_overtime</span>
+                  <span className="text-[10px] px-1.5 py-0.5 bg-zinc-800 text-zinc-300 rounded font-mono">Period Log</span>
+                </div>
+                <p className="text-zinc-400 text-[11px]">
+                  Discrete overtime transactions submitted by supervisors and approved by HR before payroll merging.
+                </p>
+                <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800 font-mono text-[10px] text-zinc-300 space-y-0.5">
+                  <div><span className="text-rose-400">id</span>: string ("OT_001"), <span className="text-rose-400">employeeId</span>: string, <span className="text-rose-400">payrollPeriod</span>: "2026-08"</div>
+                  <div><span className="text-rose-400">date</span>: string, <span className="text-rose-400">hours</span>: number (8), <span className="text-rose-400">ratePerHour</span>: number, <span className="text-rose-400">amount</span>: number (2400)</div>
+                  <div><span className="text-rose-400">status</span>: <span className="text-amber-400">"PENDING" | "APPROVED" | "REJECTED"</span></div>
+                </div>
+              </div>
+
+              {/* 8. hisaab_incentives */}
+              <div className="p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-2">
+                <div className="flex items-center justify-between pb-1 border-b border-zinc-800">
+                  <span className="font-mono font-bold text-teal-400 text-xs">8. hisaab_incentives</span>
+                  <span className="text-[10px] px-1.5 py-0.5 bg-zinc-800 text-zinc-300 rounded font-mono">Variable Earnings</span>
+                </div>
+                <p className="text-zinc-400 text-[11px]">
+                  Sales commissions, quarterly spot awards, festival bonuses, and productivity incentives.
+                </p>
+                <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800 font-mono text-[10px] text-zinc-300 space-y-0.5">
+                  <div><span className="text-teal-400">id</span>: string, <span className="text-teal-400">employeeId</span>: string, <span className="text-teal-400">payrollPeriod</span>: "2026-08"</div>
+                  <div><span className="text-teal-400">type</span>: <span className="text-amber-400">"SALES_COMMISSION" | "PERFORMANCE_BONUS" | "FESTIVAL_BONUS" | "SPOT_AWARD"</span></div>
+                  <div><span className="text-teal-400">title</span>: string, <span className="text-teal-400">amount</span>: number (15000), <span className="text-teal-400">status</span>: "APPROVED"</div>
+                </div>
+              </div>
+
+              {/* 9. hisaab_salary_advances */}
+              <div className="p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-2">
+                <div className="flex items-center justify-between pb-1 border-b border-zinc-800">
+                  <span className="font-mono font-bold text-amber-300 text-xs">9. hisaab_salary_advances</span>
+                  <span className="text-[10px] px-1.5 py-0.5 bg-zinc-800 text-zinc-300 rounded font-mono">100% Single-Period</span>
+                </div>
+                <p className="text-zinc-400 text-[11px]">
+                  Emergency cash advances given mid-month that are 100% deducted in full from the immediate payslip.
+                </p>
+                <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800 font-mono text-[10px] text-zinc-300 space-y-0.5">
+                  <div><span className="text-amber-300">id</span>: string ("ADV_001"), <span className="text-amber-300">employeeId</span>: string, <span className="text-amber-300">amount</span>: number (10000)</div>
+                  <div><span className="text-amber-300">disbursementDate</span>: string, <span className="text-amber-300">recoveryPeriod</span>: "2026-08", <span className="text-amber-300">status</span>: "APPROVED"</div>
+                </div>
+              </div>
+
+              {/* 10. hisaab_loans */}
+              <div className="p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-2">
+                <div className="flex items-center justify-between pb-1 border-b border-zinc-800">
+                  <span className="font-mono font-bold text-indigo-400 text-xs">10. hisaab_loans</span>
+                  <span className="text-[10px] px-1.5 py-0.5 bg-zinc-800 text-zinc-300 rounded font-mono">Amortized Ledger</span>
+                </div>
+                <p className="text-zinc-400 text-[11px]">
+                  Multi-month personal or equipment loans with structured monthly EMI schedules and balance tracking.
+                </p>
+                <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800 font-mono text-[10px] text-zinc-300 space-y-0.5">
+                  <div><span className="text-indigo-400">id</span>: string ("LOAN_001"), <span className="text-indigo-400">principalAmount</span>: 60000, <span className="text-indigo-400">tenureMonths</span>: 12</div>
+                  <div><span className="text-indigo-400">monthlyEMI</span>: 5000, <span className="text-indigo-400">paidAmount</span>: 15000, <span className="text-indigo-400">remainingBalance</span>: 45000</div>
+                  <div><span className="text-indigo-400">installmentsPaid</span>: 3, <span className="text-indigo-400">totalInstallments</span>: 12, <span className="text-indigo-400">status</span>: "ACTIVE"</div>
+                </div>
+              </div>
+
+              {/* 11. hisaab_payroll_runs */}
+              <div className="p-4 bg-zinc-900/60 border border-emerald-500/50 rounded-xl space-y-2 shadow-lg shadow-emerald-950/20">
+                <div className="flex items-center justify-between pb-1 border-b border-zinc-800">
+                  <span className="font-mono font-bold text-emerald-300 text-xs">11. hisaab_payroll_runs</span>
+                  <span className="text-[10px] px-2 py-0.5 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded font-mono font-bold">Immutable Ledger</span>
+                </div>
+                <p className="text-zinc-400 text-[11px]">
+                  Frozen monthly execution snapshot containing finalized totals and itemized breakdowns per employee.
+                </p>
+                <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800 font-mono text-[10px] text-zinc-300 space-y-0.5">
+                  <div><span className="text-emerald-300">id</span>: string ("RUN_2026_08"), <span className="text-emerald-300">month</span>: "2026-08", <span className="text-emerald-300">status</span>: <span className="text-amber-400">"DRAFT" | "LOCKED" | "DISBURSED"</span></div>
+                  <div><span className="text-emerald-300">totalGrossPayroll</span>: number, <span className="text-emerald-300">totalDeductions</span>: number, <span className="text-emerald-300">totalNetPay</span>: number</div>
+                  <div><span className="text-emerald-300">records</span>: Array&lt;&#123; employeeId, earnedGross, netPay, earnings[], deductions[], employerCost[] &#125;&gt;</div>
+                </div>
+              </div>
+
+              {/* 12. hisaab_payslips */}
+              <div className="p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-2">
+                <div className="flex items-center justify-between pb-1 border-b border-zinc-800">
+                  <span className="font-mono font-bold text-blue-400 text-xs">12. hisaab_payslips</span>
+                  <span className="text-[10px] px-1.5 py-0.5 bg-zinc-800 text-zinc-300 rounded font-mono">Disbursement Artifact</span>
+                </div>
+                <p className="text-zinc-400 text-[11px]">
+                  Generated payslip documents with company letterhead, tax regime, bank account details, and net pay in words.
+                </p>
+                <div className="bg-zinc-950 p-2.5 rounded-lg border border-zinc-800 font-mono text-[10px] text-zinc-300 space-y-0.5">
+                  <div><span className="text-blue-400">id</span>: string, <span className="text-blue-400">runId</span>: string, <span className="text-blue-400">employeeId</span>: string, <span className="text-blue-400">month</span>: string</div>
+                  <div><span className="text-blue-400">metadataSnapshot</span>: &#123; pan, uan, bankName, designation &#125;, <span className="text-blue-400">netPayInWords</span>: string</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 5 CORE ARCHITECTURAL DESIGN PATTERNS */}
+          <div className="space-y-4 pt-4 border-t border-zinc-800">
+            <h4 className="font-bold text-zinc-100 text-sm flex items-center gap-2">
+              <Cpu className="size-4 text-indigo-400" />
+              5 Core Enterprise Architectural Design Patterns in Hisaab
+            </h4>
+
+            <div className="space-y-3">
+              {/* Pattern 1 */}
+              <div className="p-4 bg-zinc-900/70 border-l-4 border-indigo-500 rounded-xl border border-zinc-800 space-y-1.5">
+                <div className="flex items-center gap-2 font-bold text-zinc-200">
+                  <span className="text-[10px] font-mono uppercase bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded border border-indigo-800">
+                    Pattern 1
+                  </span>
+                  <span>Slowly Changing Dimensions Type-2 (SCD-2) for Salary Revisions</span>
+                </div>
+                <p className="text-zinc-300 text-[11px] leading-relaxed">
+                  Instead of mutating an employee's salary in place (which would corrupt all previous month's tax returns and payslips), the system closes the existing version by setting its <code className="text-indigo-300 bg-zinc-950 px-1 py-0.5 rounded">effectiveTo = "2026-03-31"</code> and creates a brand-new record with <code className="text-indigo-300 bg-zinc-950 px-1 py-0.5 rounded">effectiveFrom = "2026-04-01"</code>. The payroll engine resolves active compensation using point-in-time temporal queries.
+                </p>
+              </div>
+
+              {/* Pattern 2 */}
+              <div className="p-4 bg-zinc-900/70 border-l-4 border-emerald-500 rounded-xl border border-zinc-800 space-y-1.5">
+                <div className="flex items-center gap-2 font-bold text-zinc-200">
+                  <span className="text-[10px] font-mono uppercase bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800">
+                    Pattern 2
+                  </span>
+                  <span>Directed Acyclic Graph (DAG) Component Dependency Resolution</span>
+                </div>
+                <p className="text-zinc-300 text-[11px] leading-relaxed">
+                  Salary components have strict mathematical dependencies: <code className="text-emerald-300 bg-zinc-950 px-1 py-0.5 rounded">HRA depends on Basic</code>, <code className="text-emerald-300 bg-zinc-950 px-1 py-0.5 rounded">EPF depends on Basic</code>, and <code className="text-emerald-300 bg-zinc-950 px-1 py-0.5 rounded">Special Allowance balances CTC</code>. The engine evaluates in 5 discrete passes: (1) Fixed & Basic % of CTC $\rightarrow$ (2) Multi-component base % $\rightarrow$ (3) Employer Costs $\rightarrow$ (4) Balancing Special Allowance $\rightarrow$ (5) Statutory Deductions.
+                </p>
+              </div>
+
+              {/* Pattern 3 */}
+              <div className="p-4 bg-zinc-900/70 border-l-4 border-cyan-500 rounded-xl border border-zinc-800 space-y-1.5">
+                <div className="flex items-center gap-2 font-bold text-zinc-200">
+                  <span className="text-[10px] font-mono uppercase bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded border border-cyan-800">
+                    Pattern 3
+                  </span>
+                  <span>Polymorphic Wage Engine Strategy Pattern</span>
+                </div>
+                <p className="text-zinc-300 text-[11px] leading-relaxed">
+                  The payroll calculation engine delegates execution based on the employee's <code className="text-cyan-300 bg-zinc-950 px-1 py-0.5 rounded">payType</code>: (1) Monthly Salaried uses Fixed CTC pro-ration; (2) Daily Wage evaluates present days, paid rest days, and double overtime; (3) Hourly computes logged timesheet hours and shift extension rates; (4) Piece-Rate evaluates verified units output and volume bonuses.
+                </p>
+              </div>
+
+              {/* Pattern 4 */}
+              <div className="p-4 bg-zinc-900/70 border-l-4 border-amber-500 rounded-xl border border-zinc-800 space-y-1.5">
+                <div className="flex items-center gap-2 font-bold text-zinc-200">
+                  <span className="text-[10px] font-mono uppercase bg-amber-950 text-amber-300 px-2 py-0.5 rounded border border-amber-800">
+                    Pattern 4
+                  </span>
+                  <span>Immutable Event Ledger & Snapshot Isolation</span>
+                </div>
+                <p className="text-zinc-300 text-[11px] leading-relaxed">
+                  Once a payroll run is executed and moved to <code className="text-amber-300 bg-zinc-950 px-1 py-0.5 rounded">LOCKED</code> or <code className="text-amber-300 bg-zinc-950 px-1 py-0.5 rounded">DISBURSED</code> status, all employee payout snapshots, earned gross, and tax deductions are frozen in <code className="text-amber-300 bg-zinc-950 px-1 py-0.5 rounded">hisaab_payroll_runs</code>. Subsequent employee promotions or master component rule changes will never alter past finalized runs.
+                </p>
+              </div>
+
+              {/* Pattern 5 */}
+              <div className="p-4 bg-zinc-900/70 border-l-4 border-purple-500 rounded-xl border border-zinc-800 space-y-1.5">
+                <div className="flex items-center gap-2 font-bold text-zinc-200">
+                  <span className="text-[10px] font-mono uppercase bg-purple-950 text-purple-300 px-2 py-0.5 rounded border border-purple-800">
+                    Pattern 5
+                  </span>
+                  <span>Resilient Storage Facade Pattern with Self-Healing Fallback</span>
+                </div>
+                <p className="text-zinc-300 text-[11px] leading-relaxed">
+                  The <code className="text-purple-300 bg-zinc-950 px-1 py-0.5 rounded">storageService</code> wraps browser storage with safe JSON parsing, deep clone defaults, and automatic fallback. If local storage is empty or corrupted, it transparently recovers standard seed data without crashing the client application.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
+
+
 

@@ -230,23 +230,23 @@ export default function SalaryTemplates({ onNavigate }) {
                 <div className="bg-zinc-950/60 p-3.5 rounded-xl border border-zinc-800/60 space-y-2 text-xs">
                   <div className="flex justify-between text-[11px] text-zinc-500 font-semibold uppercase tracking-wider pb-1 border-b border-zinc-800">
                     <span>Illustrative Snapshot</span>
-                    <span>₹6,00,000 CTC</span>
+                    <span className="text-zinc-300 font-mono font-bold">₹6,00,000 / yr (₹50,000 / mo)</span>
                   </div>
                   <div className="flex justify-between text-zinc-300">
-                    <span className="text-zinc-400">Gross Salary:</span>
-                    <span className="font-mono font-semibold text-emerald-400">{formatINR(breakdown.totalGross)}</span>
+                    <span className="text-zinc-400">Monthly Gross Salary:</span>
+                    <span className="font-mono font-semibold text-emerald-400">{formatINR(breakdown.totalGross)} <span className="text-[10px] text-zinc-500 font-normal">/ mo</span></span>
                   </div>
                   <div className="flex justify-between text-zinc-300">
                     <span className="text-zinc-400">Employer Cost:</span>
-                    <span className="font-mono font-semibold text-purple-400">{formatINR(breakdown.totalEmployerCost)}</span>
+                    <span className="font-mono font-semibold text-purple-400">{formatINR(breakdown.totalEmployerCost)} <span className="text-[10px] text-zinc-500 font-normal">/ mo</span></span>
                   </div>
                   <div className="flex justify-between text-zinc-300">
                     <span className="text-zinc-400">Employee Deductions:</span>
-                    <span className="font-mono font-semibold text-rose-400">{formatINR(breakdown.totalDeductions)}</span>
+                    <span className="font-mono font-semibold text-rose-400">{formatINR(breakdown.totalDeductions)} <span className="text-[10px] text-zinc-500 font-normal">/ mo</span></span>
                   </div>
                   <div className="flex justify-between font-bold text-indigo-400 pt-1 border-t border-zinc-800">
                     <span>Est. Net Take-Home:</span>
-                    <span className="font-mono">{formatINR(breakdown.netPay)}</span>
+                    <span className="font-mono">{formatINR(breakdown.netPay)} <span className="text-[10px] text-zinc-500 font-normal">/ mo</span></span>
                   </div>
                 </div>
               </div>

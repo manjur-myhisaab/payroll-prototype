@@ -716,16 +716,20 @@ export default function EmployeeSalaries() {
                       ) : payType === "PIECE_RATE" ? (
                         <span>{formatINR(activeSal?.pieceRate || 15)} <span className="text-[10px] text-zinc-500 font-normal">/ unit</span></span>
                       ) : (
-                        <span>
-                          {formatINR(activeSal?.annualCTC || 720000)} <span className="text-[10px] text-zinc-500 font-normal">/ yr</span>
-                          <span className="text-[10px] text-zinc-400 block font-normal font-sans">
-                            ({formatINR(Math.round((activeSal?.annualCTC || 720000) / 12))} / mo)
-                          </span>
-                        </span>
+                        <div className="space-y-0.5">
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <span className="font-bold text-zinc-100 text-xs">{formatINR(activeSal?.annualCTC || 720000)}</span>
+                            <span className="text-[10px] text-zinc-400 font-normal font-sans">/ yr (Annual CTC)</span>
+                          </div>
+                          <div className="text-[11px] text-indigo-400 font-mono font-semibold">
+                            {formatINR(Math.round((activeSal?.annualCTC || 720000) / 12))}
+                            <span className="text-[10px] text-zinc-400 font-normal font-sans"> / mo (Monthly CTC)</span>
+                          </div>
+                        </div>
                       )}
                     </div>
                     {/* Effective Duration */}
-                    <div className="text-[10px] text-zinc-500 font-mono mt-1 flex items-center gap-1">
+                    <div className="text-[10px] text-zinc-500 font-mono mt-1.5 flex items-center gap-1">
                       <Calendar className="size-2.5 text-zinc-500" />
                       <span>{formatDate(activeSal?.effectiveFrom)} {activeSal?.effectiveTo ? `to ${formatDate(activeSal.effectiveTo)}` : "→ Present"}</span>
                     </div>
@@ -842,8 +846,8 @@ export default function EmployeeSalaries() {
                   <td className="p-4 text-right font-mono font-semibold text-emerald-400">
                     {breakdown ? (
                       <div>
-                        <span className="text-sm font-bold">{formatINR(breakdown.totalGross)}</span>
-                        <span className="text-[10px] text-zinc-500 block font-sans">
+                        <span className="text-sm font-bold">{formatINR(breakdown.totalGross)} <span className="text-[10px] text-zinc-500 font-normal font-sans">/ mo</span></span>
+                        <span className="text-[10px] text-zinc-400 block font-mono mt-0.5">
                           {payType === "DAILY_WAGE"
                             ? "~26 days work"
                             : payType === "HOURLY"
@@ -860,9 +864,11 @@ export default function EmployeeSalaries() {
                   <td className="p-4 text-right font-mono font-bold text-indigo-400">
                     {breakdown ? (
                       <div>
-                        <span className="text-sm">{formatINR(breakdown.netPay)}</span>
-                        <span className="text-[10px] text-zinc-400 font-normal block font-sans">
-                          Net Pay
+                        <span className="text-sm font-black">{formatINR(breakdown.netPay)} <span className="text-[10px] text-zinc-500 font-normal font-sans">/ mo</span></span>
+                        <span className="text-[10px] text-zinc-400 font-normal block font-mono mt-0.5">
+                          {payType === "MONTHLY_SALARIED"
+                            ? `(${formatINR(breakdown.netPay * 12)} / yr)`
+                            : "Est. Net"}
                         </span>
                       </div>
                     ) : "—"}
@@ -1891,8 +1897,8 @@ export default function EmployeeSalaries() {
 
             {/* Resolved Effective Structure Banner */}
             {selectedMonthSalary && (
-              <div className="p-3 bg-zinc-900/60 border border-zinc-800 rounded-xl flex items-center justify-between text-[11px]">
-                <div className="flex items-center gap-2">
+              <div className="p-3.5 bg-zinc-900/80 border border-zinc-800 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px]">
+                <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-zinc-500 uppercase font-bold text-[10px]">Active in {viewMonth}:</span>
                   <span className="font-bold text-zinc-100 font-mono">
                     {selectedMonthSalary.payType.replace("_", " ")}
@@ -1900,13 +1906,18 @@ export default function EmployeeSalaries() {
                   <span className="text-zinc-500">•</span>
                   <span className="text-emerald-400 font-mono font-bold">
                     {selectedMonthSalary.payType === "MONTHLY_SALARIED"
-                      ? `${formatINR(selectedMonthSalary.annualCTC)} / yr`
+                      ? `${formatINR(selectedMonthSalary.annualCTC)} / yr (Annual CTC)`
                       : selectedMonthSalary.payType === "DAILY_WAGE"
                       ? `${formatINR(selectedMonthSalary.dailyRate)} / day`
                       : selectedMonthSalary.payType === "HOURLY"
                       ? `${formatINR(selectedMonthSalary.hourlyRate)} / hr`
                       : `${formatINR(selectedMonthSalary.pieceRate)} / unit`}
                   </span>
+                  {selectedMonthSalary.payType === "MONTHLY_SALARIED" && (
+                    <span className="text-indigo-300 font-mono font-bold">
+                      • {formatINR(Math.round(selectedMonthSalary.annualCTC / 12))} / mo (Monthly CTC)
+                    </span>
+                  )}
                 </div>
                 <span className="text-zinc-400 font-mono text-[10px]">
                   Duration: {formatDate(selectedMonthSalary.effectiveFrom)} {selectedMonthSalary.effectiveTo ? `to ${formatDate(selectedMonthSalary.effectiveTo)}` : "→ Present"}
@@ -1917,9 +1928,9 @@ export default function EmployeeSalaries() {
             {/* Compensation KPIs in Selected Month */}
             {selectedMonthSalary && detailBreakdown && (
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <div className="bg-zinc-950/80 border border-zinc-800 p-3 rounded-xl">
+                <div className="bg-zinc-950/80 border border-zinc-800 p-3 rounded-xl space-y-1">
                   <span className="text-[10px] text-zinc-500 uppercase font-bold">Base Compensation</span>
-                  <div className="font-mono font-bold text-zinc-100 text-sm mt-0.5">
+                  <div className="font-mono font-bold text-zinc-100 text-sm">
                     {selectedMonthSalary.payType === "MONTHLY_SALARIED"
                       ? formatINR(selectedMonthSalary.annualCTC)
                       : selectedMonthSalary.payType === "DAILY_WAGE"
@@ -1929,9 +1940,9 @@ export default function EmployeeSalaries() {
                       : `${formatINR(selectedMonthSalary.pieceRate)}/unit`}
                   </div>
                   {selectedMonthSalary.payType === "MONTHLY_SALARIED" && (
-                    <span className="text-[10px] text-zinc-500">
-                      ({formatINR(Math.round(selectedMonthSalary.annualCTC / 12))} / mo)
-                    </span>
+                    <div className="text-[11px] text-indigo-400 font-mono font-bold">
+                      {formatINR(Math.round(selectedMonthSalary.annualCTC / 12))} <span className="text-[10px] text-zinc-400 font-normal font-sans">/ mo</span>
+                    </div>
                   )}
                 </div>
                 <div className="bg-zinc-950/80 border border-zinc-800 p-3 rounded-xl">
@@ -2122,7 +2133,7 @@ export default function EmployeeSalaries() {
                           </span>
                           <span className="font-bold text-zinc-200 font-mono">
                             {rev.payType === "MONTHLY_SALARIED"
-                              ? `${formatINR(rev.annualCTC)} / yr`
+                              ? `${formatINR(rev.annualCTC)} / yr (${formatINR(Math.round(rev.annualCTC / 12))} / mo)`
                               : rev.payType === "DAILY_WAGE"
                               ? `${formatINR(rev.dailyRate)} / day`
                               : rev.payType === "HOURLY"
