@@ -17,6 +17,7 @@ import {
   Receipt,
   ShieldCheck,
   ChevronRight,
+  BookOpen,
 } from "lucide-react";
 
 export default function AdminLayout({ activePage, onNavigate, children }) {
@@ -36,6 +37,7 @@ export default function AdminLayout({ activePage, onNavigate, children }) {
     { id: "payslips", label: "Payslips", icon: FileText, section: "REPORTS & OUTPUT" },
     { id: "reports", label: "Reports & Registers", icon: FileSpreadsheet, section: "REPORTS & OUTPUT" },
     { id: "settings", label: "Settings", icon: Settings, section: "ADMIN" },
+    { id: "docs", label: "Docs & Knowledge Base", icon: BookOpen, section: "ADMIN" },
   ];
 
   const groupedNav = navigationItems.reduce((acc, item) => {

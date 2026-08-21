@@ -250,9 +250,8 @@ export default function Incentives() {
                   <td className="p-4 text-zinc-400 max-w-xs truncate">{inc.reason || "—"}</td>
                   <td className="p-4 text-center">
                     <span
-                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${
-                        STATUS_COLORS[inc.status] || STATUS_COLORS.PENDING
-                      }`}
+                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${STATUS_COLORS[inc.status] || STATUS_COLORS.PENDING
+                        }`}
                     >
                       {inc.status}
                     </span>

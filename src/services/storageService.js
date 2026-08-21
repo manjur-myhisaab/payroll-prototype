@@ -197,7 +197,7 @@ export const storageService = {
 
     const newRecord = {
       ...assignment,
-      id: `SAL_${assignment.employeeId}_${Date.now().toString().slice(-4)}`,
+      id: assignment.id || `SAL_${assignment.employeeId}_${Date.now().toString().slice(-4)}`,
       status: "ACTIVE",
       effectiveTo: null,
     };
@@ -205,6 +205,22 @@ export const storageService = {
     updatedList.unshift(newRecord);
     setStoredItem(STORAGE_KEYS.EMPLOYEE_SALARIES, updatedList);
     return newRecord;
+  },
+  saveEmployeeWithSalary({ employeeData, salaryData, isEdit = false }) {
+    let savedEmp;
+    if (isEdit && employeeData.id) {
+      savedEmp = this.updateEmployee(employeeData.id, employeeData);
+    } else {
+      savedEmp = this.createEmployee(employeeData);
+    }
+
+    if (savedEmp && salaryData) {
+      this.assignSalaryStructure({
+        ...salaryData,
+        employeeId: savedEmp.id,
+      });
+    }
+    return savedEmp;
   },
 
   // Overtime

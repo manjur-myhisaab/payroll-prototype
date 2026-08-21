@@ -61,7 +61,6 @@ const EMPTY_FORM = {
   baseComponentIds: ["COMP_BASIC"],
   taxRuleType: "TDS_PROJECTED",
   statutoryRuleType: "EPF_12",
-  maxDeductionAmount: "",
   isProrated: true,
   recurring: true,
   effectiveFrom: "2026-01-01",
@@ -102,7 +101,6 @@ export default function SalaryComponents() {
     setEditingId(comp.id);
     setForm({
       ...comp,
-      maxDeductionAmount: comp.maxDeductionAmount || "",
       percentageBaseType: comp.percentageBaseType || (comp.basedOn === "BASIC" ? "COMPONENTS" : "CTC"),
       baseComponentIds: comp.baseComponentIds || (comp.basedOn === "BASIC" ? ["COMP_BASIC"] : []),
       isProrated: comp.isProrated !== false,
@@ -189,7 +187,6 @@ export default function SalaryComponents() {
       value: preset.value !== undefined ? preset.value : 0,
       percentageBaseType: preset.percentageBaseType || "COMPONENTS",
       baseComponentIds: preset.baseComponentIds || ["COMP_BASIC"],
-      maxDeductionAmount: preset.wageCeiling || prev.maxDeductionAmount || "",
       isProrated: preset.isProrated !== false,
       recurring: preset.recurring !== false,
       taxRuleType: preset.taxRuleType || "TDS_PROJECTED",
@@ -240,9 +237,9 @@ export default function SalaryComponents() {
     loadData();
   };
 
-  // List of all earning components eligible to be base components
+  // List of ALL earning components eligible to be base components
   const availableBaseEarnings = components.filter(
-    (c) => c.type === "EARNING" && c.id !== editingId && c.calculationMethod !== "BALANCE"
+    (c) => c.type === "EARNING" && c.id !== editingId
   );
 
   // Helper to format formula display
@@ -643,36 +640,6 @@ export default function SalaryComponents() {
             </div>
           )}
 
-          {/* Optional Maximum Deduction Cap Field (Appears only for Deductions) */}
-          {form.type === "DEDUCTION" && (
-            <div className="p-3.5 bg-zinc-950/80 rounded-xl border border-zinc-800 space-y-1.5 animate-in fade-in">
-              <label className="font-semibold text-zinc-300 flex items-center justify-between">
-                <span>Maximum Deduction Amount (₹ / month)</span>
-                <span className="text-[10px] text-zinc-500 font-normal bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded">
-                  Optional / Non-mandatory
-                </span>
-              </label>
-              <div className="relative">
-                <span className="absolute left-3 top-2.5 text-zinc-500 font-bold">₹</span>
-                <input
-                  type="number"
-                  placeholder="e.g. 2500 (Leave empty for uncapped deduction)"
-                  value={form.maxDeductionAmount || ""}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      maxDeductionAmount: e.target.value ? +e.target.value : "",
-                    })
-                  }
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-xl p-2.5 pl-8 text-zinc-200 font-mono font-bold outline-none focus:border-indigo-500"
-                />
-              </div>
-              <p className="text-[11px] text-zinc-500">
-                If specified, the calculated deduction in any monthly run will not exceed this upper cap.
-              </p>
-            </div>
-          )}
-
           {/* Conditional Calculation fields */}
           <div className="bg-zinc-950/60 p-4 rounded-xl border border-zinc-800/80 space-y-4">
             {form.calculationMethod === "PERCENTAGE" && (
@@ -707,48 +674,79 @@ export default function SalaryComponents() {
                   </div>
                 </div>
 
-                {/* When % of Another Component(s) is selected: Show Multi-select Earning Components */}
+                {/* When % of Another Component(s) is selected: Show Multi-select of ALL Earning Components */}
                 {form.percentageBaseType === "COMPONENTS" && (
                   <div className="p-3.5 bg-zinc-900/90 rounded-xl border border-zinc-700/80 space-y-2.5 animate-in fade-in">
                     <div className="flex justify-between items-center">
                       <span className="font-bold text-zinc-200 flex items-center gap-1.5 text-xs">
                         <CheckSquare className="size-3.5 text-indigo-400" />
-                        Select Base Components (Multi-select) *
+                        Select Base Earning Components (Multi-select) *
                       </span>
-                      <span className="text-[10px] text-zinc-400">
-                        {form.baseComponentIds?.length || 0} component(s) selected
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setForm({
+                              ...form,
+                              baseComponentIds: availableBaseEarnings.map((c) => c.id),
+                            })
+                          }
+                          className="text-[10px] text-indigo-400 hover:text-indigo-300 font-semibold hover:underline"
+                        >
+                          Select All
+                        </button>
+                        <span className="text-zinc-600">|</span>
+                        <button
+                          type="button"
+                          onClick={() => setForm({ ...form, baseComponentIds: [] })}
+                          className="text-[10px] text-zinc-500 hover:text-zinc-300 hover:underline"
+                        >
+                          Clear
+                        </button>
+                        <span className="text-[10px] text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded font-mono ml-1">
+                          {form.baseComponentIds?.length || 0} / {availableBaseEarnings.length} selected
+                        </span>
+                      </div>
                     </div>
 
                     <p className="text-[11px] text-zinc-400 leading-snug">
-                      Formula will calculate {form.value}% of the combined sum of the selected components:
+                      Formula will calculate {form.value}% of the combined sum of the selected earning components:
                     </p>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-40 overflow-y-auto p-1">
-                      {availableBaseEarnings.map((c) => {
-                        const isChecked = (form.baseComponentIds || []).includes(c.id);
-                        return (
-                          <label
-                            key={c.id}
-                            onClick={() => toggleBaseComponent(c.id)}
-                            className={`flex items-center gap-2.5 p-2 rounded-lg border cursor-pointer select-none transition-all ${isChecked
-                                ? "bg-indigo-950/60 border-indigo-500 text-indigo-200 font-semibold"
-                                : "bg-zinc-950 border-zinc-800 text-zinc-400 hover:border-zinc-700"
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-48 overflow-y-auto p-1 border border-zinc-800 rounded-xl bg-zinc-950/60">
+                      {availableBaseEarnings.length === 0 ? (
+                        <div className="col-span-2 text-center p-3 text-zinc-500 text-xs">
+                          No other earning components available.
+                        </div>
+                      ) : (
+                        availableBaseEarnings.map((c) => {
+                          const isChecked = (form.baseComponentIds || []).includes(c.id);
+                          return (
+                            <label
+                              key={c.id}
+                              onClick={() => toggleBaseComponent(c.id)}
+                              className={`flex items-center gap-2.5 p-2 rounded-lg border cursor-pointer select-none transition-all ${
+                                isChecked
+                                  ? "bg-indigo-950/60 border-indigo-500 text-indigo-200 font-semibold shadow-sm"
+                                  : "bg-zinc-900/60 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-300"
                               }`}
-                          >
-                            <input
-                              type="checkbox"
-                              checked={isChecked}
-                              onChange={() => { }}
-                              className="size-3.5 accent-indigo-600 rounded cursor-pointer"
-                            />
-                            <div className="text-xs truncate">
-                              <span className="text-zinc-200">{c.name}</span>
-                              <span className="font-mono text-[10px] text-zinc-500 ml-1.5">({c.code})</span>
-                            </div>
-                          </label>
-                        );
-                      })}
+                            >
+                              <input
+                                type="checkbox"
+                                checked={isChecked}
+                                onChange={() => {}}
+                                className="size-3.5 accent-indigo-600 rounded cursor-pointer"
+                              />
+                              <div className="text-xs truncate flex-1 flex items-center justify-between">
+                                <span className="text-zinc-200 font-medium">{c.name}</span>
+                                <span className="font-mono text-[10px] text-zinc-500 ml-1.5">
+                                  ({c.code})
+                                </span>
+                              </div>
+                            </label>
+                          );
+                        })
+                      )}
                     </div>
 
                     {/* Formula Live Preview Banner */}
@@ -758,8 +756,8 @@ export default function SalaryComponents() {
                         Formula: {form.value}% of (
                         {form.baseComponentIds?.length > 0
                           ? form.baseComponentIds
-                            .map((id) => components.find((c) => c.id === id)?.name || id)
-                            .join(" + ")
+                              .map((id) => components.find((c) => c.id === id)?.name || id)
+                              .join(" + ")
                           : "Please select components above"}
                         )
                       </span>

@@ -185,7 +185,7 @@ export default function Settings() {
             </div>
           </div>
 
-          <div className="p-4 bg-zinc-950/60 rounded-xl border border-zinc-800 space-y-3">
+          <div className="p-4 bg-zinc-950/60 rounded-xl border border-zinc-800 space-y-4">
             <div className="flex items-center justify-between">
               <div>
                 <span className="font-semibold text-zinc-200 block text-xs">
@@ -203,6 +203,48 @@ export default function Settings() {
                   className="sr-only peer"
                 />
                 <div className="w-9 h-5 bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+              </label>
+            </div>
+
+            {/* Paid Weekly Off Policy Toggle */}
+            <div className="flex items-center justify-between pt-3 border-t border-zinc-800/80">
+              <div>
+                <span className="font-semibold text-zinc-200 block text-xs">
+                  Paid Weekly Off Policy (Shops & Establishment / Factories Act)
+                </span>
+                <span className="text-[11px] text-zinc-400">
+                  When enabled, weekly rest days are counted as paid/payable days in monthly salary processing.
+                </span>
+              </div>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={form.paidWeeklyOffEnabled !== false}
+                  onChange={(e) => setForm({ ...form, paidWeeklyOffEnabled: e.target.checked })}
+                  className="sr-only peer"
+                />
+                <div className="w-9 h-5 bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+              </label>
+            </div>
+
+            {/* Paid Statutory Holidays Policy Toggle */}
+            <div className="flex items-center justify-between pt-3 border-t border-zinc-800/80">
+              <div>
+                <span className="font-semibold text-zinc-200 block text-xs">
+                  Paid Statutory Holidays Policy (National & Festival Holidays)
+                </span>
+                <span className="text-[11px] text-zinc-400">
+                  When enabled, declared public holidays are treated as fully paid days for staff.
+                </span>
+              </div>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={form.paidStatutoryHolidaysEnabled !== false}
+                  onChange={(e) => setForm({ ...form, paidStatutoryHolidaysEnabled: e.target.checked })}
+                  className="sr-only peer"
+                />
+                <div className="w-9 h-5 bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
               </label>
             </div>
           </div>

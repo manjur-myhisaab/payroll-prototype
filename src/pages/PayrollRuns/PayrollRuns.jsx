@@ -246,9 +246,8 @@ export default function PayrollRuns({ onNavigate, onSelectPayslip }) {
                   {formatMonthName(activeRunMonth)} Payroll Run
                 </span>
                 <span
-                  className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${
-                    STATUS_COLORS[currentRunMeta.status] || STATUS_COLORS.DRAFT
-                  }`}
+                  className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${STATUS_COLORS[currentRunMeta.status] || STATUS_COLORS.DRAFT
+                    }`}
                 >
                   {currentRunMeta.status}
                 </span>

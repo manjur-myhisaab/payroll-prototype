@@ -217,9 +217,8 @@ export default function SalaryTemplates({ onNavigate }) {
                     return (
                       <span
                         key={tc.componentId}
-                        className={`text-[10px] font-semibold px-2 py-0.5 rounded border ${
-                          TYPE_COLORS[comp.type] || TYPE_COLORS.EARNING
-                        }`}
+                        className={`text-[10px] font-semibold px-2 py-0.5 rounded border ${TYPE_COLORS[comp.type] || TYPE_COLORS.EARNING
+                          }`}
                       >
                         {comp.name} ({tc.calculationMethod === "PERCENTAGE" ? `${tc.value}%` : tc.calculationMethod === "BALANCE" ? "Balance" : tc.calculationMethod === "TAX_RULE" ? "Tax Rule" : tc.calculationMethod === "STATUTORY_RULE" ? "Statutory" : `₹${tc.value}`})
                       </span>
@@ -390,11 +389,10 @@ export default function SalaryTemplates({ onNavigate }) {
                             key={comp.id}
                             type="button"
                             onClick={() => toggleComponent(comp)}
-                            className={`p-2.5 rounded-xl border text-left text-xs transition-all flex items-start justify-between gap-2 ${
-                              selected
+                            className={`p-2.5 rounded-xl border text-left text-xs transition-all flex items-start justify-between gap-2 ${selected
                                 ? "bg-indigo-600/15 border-indigo-500 text-zinc-100 shadow-sm"
                                 : "bg-zinc-900/60 border-zinc-800 text-zinc-400 hover:text-zinc-200 hover:border-zinc-700"
-                            }`}
+                              }`}
                           >
                             <div className="min-w-0">
                               <div className="font-bold truncate text-zinc-200 flex items-center gap-1.5">
@@ -408,11 +406,10 @@ export default function SalaryTemplates({ onNavigate }) {
                             </div>
 
                             <span
-                              className={`size-4 rounded-md flex items-center justify-center shrink-0 border mt-0.5 transition-colors ${
-                                selected
+                              className={`size-4 rounded-md flex items-center justify-center shrink-0 border mt-0.5 transition-colors ${selected
                                   ? "bg-indigo-600 border-indigo-500 text-white"
                                   : "border-zinc-700 bg-zinc-800/40 text-transparent"
-                              }`}
+                                }`}
                             >
                               <Check className="size-3" />
                             </span>
@@ -449,9 +446,8 @@ export default function SalaryTemplates({ onNavigate }) {
                         </td>
                         <td className="p-3">
                           <span
-                            className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
-                              TYPE_COLORS[comp.type] || TYPE_COLORS.EARNING
-                            }`}
+                            className={`px-2 py-0.5 rounded text-[10px] font-bold border ${TYPE_COLORS[comp.type] || TYPE_COLORS.EARNING
+                              }`}
                           >
                             {comp.type === "EMPLOYER_CONTRIBUTION" ? "EMPLOYER COST" : comp.type}
                           </span>
@@ -507,9 +503,8 @@ export default function SalaryTemplates({ onNavigate }) {
                 Live Salary Calculation Preview (at ₹6,00,000 Annual CTC)
               </span>
               <span
-                className={`text-[11px] font-bold flex items-center gap-1 ${
-                  previewBreakdown.isWageCodeCompliant ? "text-emerald-400" : "text-amber-400"
-                }`}
+                className={`text-[11px] font-bold flex items-center gap-1 ${previewBreakdown.isWageCodeCompliant ? "text-emerald-400" : "text-amber-400"
+                  }`}
               >
                 {previewBreakdown.isWageCodeCompliant ? (
                   <CheckCircle2 className="size-3.5" />

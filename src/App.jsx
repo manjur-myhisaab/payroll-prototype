@@ -16,9 +16,10 @@ import Reimbursements from "./pages/Reimbursements/Reimbursements";
 import Payslips from "./pages/Payslips/Payslips";
 import Reports from "./pages/Reports/Reports";
 import Settings from "./pages/Settings/Settings";
+import Docs from "./pages/Docs/Docs";
 
 export default function App() {
-  const [activePage, setActivePage] = useState("reimbursements");
+  const [activePage, setActivePage] = useState("statutory_components");
 
   const renderActivePage = () => {
     switch (activePage) {
@@ -48,6 +49,8 @@ export default function App() {
         return <Reports />;
       case "settings":
         return <Settings />;
+      case "docs":
+        return <Docs />;
       default:
         return <Dashboard onNavigate={setActivePage} />;
     }
