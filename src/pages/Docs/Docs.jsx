@@ -42,21 +42,36 @@ import {
   Cpu,
   FolderGit2,
   Table,
+  Factory,
+  Package,
+  Wrench,
+  Printer,
+  BadgeCheck,
+  Scale,
 } from "lucide-react";
 
 export default function Docs() {
-  const [activeTab, setActiveTab] = useState("salary_components");
+  const [activeTab, setActiveTab] = useState("wage_types");
+  const [activeWageSubTab, setActiveWageSubTab] = useState("piece_rate");
   const [searchTerm, setSearchTerm] = useState("");
 
   const tabs = [
+    { id: "wage_types", label: "Wage Types & Pay Models", icon: Users, count: "4 Models" },
     { id: "salary_components", label: "All Salary Components (Real-World)", icon: FileCode2, count: "25+" },
     { id: "statutory_compliance", label: "Statutory Acts & Compliance Rules", icon: ShieldCheck, count: "10 Acts" },
-    { id: "employee_salaries", label: "Employee Salaries & Multi-Wage", icon: Users, count: "4 Types" },
+    { id: "employee_salaries", label: "Salary Assignments & History", icon: Layers, count: "Structure" },
     { id: "overtime_policies", label: "Overtime & Shift Policies", icon: Clock, count: "Factories Act" },
     { id: "incentives_bonuses", label: "Incentives & Bonuses", icon: Sparkles, count: "Bonus Act" },
     { id: "loans_advances", label: "Loans & Salary Advances", icon: DollarSign, count: "Recovery" },
     { id: "payroll_lifecycle", label: "Payroll Run Lifecycle", icon: PlayCircle, count: "4 Steps" },
     { id: "database_schema", label: "Database Schema & Architecture Patterns", icon: Database, count: "12 Collections" },
+  ];
+
+  const wageSubTabs = [
+    { id: "piece_rate", label: "Piece Rate (Production & Packaging)", icon: Package, badge: "Output Based" },
+    { id: "daily_wage", label: "Daily Wage (Plant & Factory Staff)", icon: Factory, badge: "Per-Day Rate" },
+    { id: "hourly_rate", label: "Hourly Rate (Specialists & Retainers)", icon: Clock, badge: "Timesheet Based" },
+    { id: "monthly_salaried", label: "Monthly Salaried (White-Collar CTC)", icon: Briefcase, badge: "Annual CTC" },
   ];
 
   return (
@@ -118,6 +133,968 @@ export default function Docs() {
           );
         })}
       </div>
+
+      {/* ========================================================================= */}
+      {/* TAB 0: WAGE TYPES & REAL-WORLD PAY MODELS (WITH LIVE REALISTIC PAYSLIPS) */}
+      {/* ========================================================================= */}
+      {activeTab === "wage_types" && (
+        <div className="space-y-6 text-xs leading-relaxed">
+          {/* Main Context Card */}
+          <div className="bg-zinc-900/60 border border-zinc-800/80 p-5 rounded-2xl space-y-3">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+              <div>
+                <h3 className="text-sm font-bold text-zinc-100 flex items-center gap-2">
+                  <Users className="size-4 text-indigo-400" />
+                  Real-World Indian Wage Types & Output Payment Systems
+                </h3>
+                <p className="text-zinc-400 text-[11px] mt-0.5">
+                  How modern Indian enterprises calculate compensation across White-Collar, Blue-Collar, Freelance, and Production Factory Staff.
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-1 bg-purple-950/80 text-purple-300 border border-purple-800/60 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1">
+                  <Scale className="size-3" />
+                  Minimum Wages Act Compliant
+                </span>
+              </div>
+            </div>
+
+            {/* Sub-tabs Switcher */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2">
+              {wageSubTabs.map((sub) => {
+                const SubIcon = sub.icon;
+                const isSubActive = activeWageSubTab === sub.id;
+                return (
+                  <button
+                    key={sub.id}
+                    onClick={() => setActiveWageSubTab(sub.id)}
+                    className={`p-3 rounded-xl border text-left transition-all flex flex-col justify-between gap-2 ${
+                      isSubActive
+                        ? "bg-indigo-950/70 border-indigo-500 text-white shadow-lg shadow-indigo-950/50"
+                        : "bg-zinc-950/60 border-zinc-800/80 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className={`p-1.5 rounded-lg ${isSubActive ? "bg-indigo-600 text-white" : "bg-zinc-900 text-zinc-400"}`}>
+                        <SubIcon className="size-4" />
+                      </div>
+                      <span className={`text-[9px] px-1.5 py-0.5 rounded font-mono font-semibold ${
+                        isSubActive ? "bg-indigo-900/80 text-indigo-200" : "bg-zinc-900 text-zinc-500"
+                      }`}>
+                        {sub.badge}
+                      </span>
+                    </div>
+                    <span className="font-bold text-xs tracking-tight">{sub.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* --------------------------------------------------------------------- */}
+          {/* SUB-TAB 1: PIECE-RATE PRODUCTION WAGE (OUTPUT BASED) */}
+          {/* --------------------------------------------------------------------- */}
+          {activeWageSubTab === "piece_rate" && (
+            <div className="space-y-6">
+              {/* Industry & Legal Rules Card */}
+              <div className="bg-zinc-900/60 border border-purple-500/30 p-5 rounded-2xl space-y-4">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
+                  <div>
+                    <h4 className="text-sm font-bold text-purple-300 flex items-center gap-2">
+                      <Package className="size-4" />
+                      1. Piece-Rate Output System: Real-World Industry Operation
+                    </h4>
+                    <span className="text-[11px] text-zinc-400">
+                      Standard in Garment/Apparel, Automotive Machining, Fabrication, Sorting & Packaging, Footwear & FMCG plants.
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 bg-purple-950 text-purple-300 border border-purple-800 rounded-lg font-mono font-bold">
+                    Formula: (Passed Units × Unit Rate) + Efficiency Bonus + 2.0x OT
+                  </span>
+                </div>
+
+                {/* 5 Core Pillars Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800/80 space-y-1.5">
+                    <strong className="text-purple-300 block font-semibold flex items-center gap-1.5">
+                      <CheckCircle2 className="size-3.5" />
+                      A. QA Inspection & Rejection Rules
+                    </strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Workers log daily Job Cards. Payment is made strictly on <strong>QA Passed/Approved Units</strong>. Under the <em>Payment of Wages Act (Sec 9 & 10)</em>, arbitrary scrap fines are prohibited—unapproved pieces are simply excluded from the billable output count.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800/80 space-y-1.5">
+                    <strong className="text-purple-300 block font-semibold flex items-center gap-1.5">
+                      <Scale className="size-3.5" />
+                      B. Guaranteed Fall-Back Wage (Sec 17)
+                    </strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Under <em>Section 17 of Minimum Wages Act</em>, if machine breakdown, power cut, or raw material shortage halts production (without worker fault), the worker is legally guaranteed the <strong>State Minimum Daily Time Wage</strong> so earnings never drop to zero.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800/80 space-y-1.5">
+                    <strong className="text-purple-300 block font-semibold flex items-center gap-1.5">
+                      <Clock className="size-3.5" />
+                      C. Piece-Rate Overtime (Factories Act Sec 59)
+                    </strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Ordinary Hourly Rate = <code className="text-zinc-200">Total Piece Earnings ÷ Total Regular Hours</code>. Any extra shift or weekend production beyond 9h/day is paid at <strong>Double Rate (2.0x of Ordinary Hourly Rate)</strong>.
+                    </p>
+                  </div>
+                </div>
+
+                {/* EPF & ESIC Treatment */}
+                <div className="p-3.5 bg-purple-950/30 border border-purple-800/50 rounded-xl text-zinc-300 flex items-start gap-2.5">
+                  <Info className="size-4 text-purple-400 shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="text-purple-200 block text-xs">Statutory EPF & ESIC Treatment for Piece-Rate:</strong>
+                    <p className="text-[11px] text-zinc-400 mt-0.5">
+                      EPFO considers total piece output earnings as statutory Basic Wages for calculating <strong>12% Employee EPF</strong> (capped at ₹15,000 ceiling). If monthly gross is ≤ ₹21,000, <strong>0.75% Employee ESIC</strong> & <strong>3.25% Employer ESIC</strong> is mandatory deducted.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* LIVE REALISTIC SALARY SLIP (PIECE RATE) */}
+              <div className="bg-zinc-950 border-2 border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
+                {/* Payslip Header */}
+                <div className="bg-gradient-to-r from-zinc-900 via-zinc-900 to-zinc-950 p-5 border-b border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="p-1.5 bg-purple-950 border border-purple-700 text-purple-300 rounded-lg font-bold font-mono text-[11px]">
+                        PAYSLIP
+                      </span>
+                      <h3 className="font-black text-sm text-zinc-100 tracking-tight">ACME MANUFACTURING INDIA PVT LTD</h3>
+                    </div>
+                    <span className="text-[10px] text-zinc-400 block mt-0.5">
+                      Plot 45, Peenya Industrial Area, Phase II, Bengaluru, Karnataka 560058 • CIN: U72200KA2024PTC123456
+                    </span>
+                  </div>
+                  <div className="text-left sm:text-right">
+                    <span className="text-xs font-mono font-bold text-purple-400 block">PAYSLIP FOR: AUGUST 2026</span>
+                    <span className="text-[10px] text-zinc-500 font-mono">Generated: 2026-08-31 • Cycle: Monthly</span>
+                  </div>
+                </div>
+
+                {/* Employee Details & Production Meta Grid */}
+                <div className="p-5 bg-zinc-900/40 border-b border-zinc-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-[11px]">
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Employee ID / Name</span>
+                    <strong className="text-zinc-100 font-bold text-xs">EMP007 - Manoj Yadav</strong>
+                    <span className="text-zinc-400 block text-[10px]">Machine Fabricator & Welder</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Department / Wage Type</span>
+                    <strong className="text-purple-300 font-bold">Fabrication Unit • PIECE_RATE</strong>
+                    <span className="text-zinc-400 block text-[10px]">Job Card: JC-2026-AUG-882</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Bank Details</span>
+                    <strong className="text-zinc-200 font-mono">Punjab National Bank</strong>
+                    <span className="text-zinc-400 block text-[10px] font-mono">A/c: 7788XXXXXX112</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Statutory IDs</span>
+                    <span className="text-zinc-300 font-mono block text-[10px]">UAN: 100778899001</span>
+                    <span className="text-zinc-400 font-mono block text-[10px]">ESIC: 50000123450000001</span>
+                  </div>
+                </div>
+
+                {/* Production & QA Summary Card */}
+                <div className="m-5 p-4 bg-purple-950/20 border border-purple-800/40 rounded-xl space-y-2">
+                  <div className="flex items-center justify-between pb-2 border-b border-purple-800/30">
+                    <span className="font-bold text-purple-300 text-xs flex items-center gap-1.5">
+                      <BadgeCheck className="size-4 text-purple-400" />
+                      Verified Production Log & Quality Assurance Summary
+                    </span>
+                    <span className="text-[10px] font-mono text-purple-300 bg-purple-950 px-2 py-0.5 rounded border border-purple-800">
+                      Standard Quota: 1,300 Units
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 font-mono text-[11px]">
+                    <div className="p-2 bg-zinc-950 rounded-lg border border-zinc-800">
+                      <span className="text-zinc-500 block text-[10px]">Total Fabricated</span>
+                      <strong className="text-zinc-100">1,620 Units</strong>
+                    </div>
+                    <div className="p-2 bg-zinc-950 rounded-lg border border-emerald-900/60">
+                      <span className="text-emerald-500 block text-[10px]">QA Passed (Billable)</span>
+                      <strong className="text-emerald-400 font-bold">1,550 Units</strong>
+                    </div>
+                    <div className="p-2 bg-zinc-950 rounded-lg border border-rose-900/60">
+                      <span className="text-rose-500 block text-[10px]">QA Rejected (Scrap)</span>
+                      <strong className="text-rose-400">70 Units (0 ₹)</strong>
+                    </div>
+                    <div className="p-2 bg-zinc-950 rounded-lg border border-zinc-800">
+                      <span className="text-zinc-500 block text-[10px]">Unit Piece Rate</span>
+                      <strong className="text-purple-300">₹ 18.00 / Unit</strong>
+                    </div>
+                    <div className="p-2 bg-zinc-950 rounded-lg border border-zinc-800">
+                      <span className="text-zinc-500 block text-[10px]">Ordinary Hourly Avg</span>
+                      <strong className="text-amber-300">₹ 145.31 / Hr</strong>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Earnings & Deductions Tables */}
+                <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Earnings Column */}
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center pb-2 border-b-2 border-emerald-800/60">
+                      <strong className="text-emerald-400 font-bold text-xs uppercase tracking-wider">Earnings (Gross Pay)</strong>
+                      <span className="text-[10px] text-zinc-400 font-mono">Amount (₹)</span>
+                    </div>
+
+                    <div className="space-y-2 text-xs">
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Piece Production Output Wages</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">1,550 Approved Units × ₹18.00/unit</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 27,900.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">High-Efficiency Target Bonus</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">Exceeded 1,300 quota (+250 extra units)</span>
+                        </div>
+                        <span className="font-mono font-bold text-emerald-400">₹ 2,500.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Overtime Pay (Factories Act 2.0x)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">24 OT Hours @ (₹145.31 × 2.0x)</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 6,975.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Paid Weekly Rest Days (Sundays)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">4 Sundays mandatory statutory rest pay</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 1,392.00</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex justify-between items-center text-xs font-bold text-emerald-400 bg-emerald-950/20 p-2.5 rounded-xl border border-emerald-800/40">
+                      <span>TOTAL GROSS EARNINGS (A):</span>
+                      <span className="font-mono text-sm">₹ 38,767.00</span>
+                    </div>
+                  </div>
+
+                  {/* Deductions Column */}
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center pb-2 border-b-2 border-rose-800/60">
+                      <strong className="text-rose-400 font-bold text-xs uppercase tracking-wider">Deductions (Statutory & Advance)</strong>
+                      <span className="text-[10px] text-zinc-400 font-mono">Amount (₹)</span>
+                    </div>
+
+                    <div className="space-y-2 text-xs">
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Employee Provident Fund (EPF 12%)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">Statutory 12% capped on ₹15,000 base</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 1,800.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Employee State Insurance (ESIC 0.75%)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">0.75% of Gross Wages</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 291.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Professional Tax (PT Karnataka)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">Applicable for monthly earnings &gt; ₹15,000</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 200.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Salary Advance / Tool Kit Recovery</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">Mid-month emergency advance recovery</span>
+                        </div>
+                        <span className="font-mono font-bold text-rose-400">₹ 1,500.00</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex justify-between items-center text-xs font-bold text-rose-400 bg-rose-950/20 p-2.5 rounded-xl border border-rose-800/40">
+                      <span>TOTAL DEDUCTIONS (B):</span>
+                      <span className="font-mono text-sm">₹ 3,791.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Net Pay Highlight Bar */}
+                <div className="p-5 bg-gradient-to-r from-purple-950/60 via-indigo-950/80 to-purple-950/60 border-t border-b border-purple-500/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                  <div>
+                    <span className="text-[10px] text-purple-300 font-bold uppercase tracking-widest block">
+                      NET PAYABLE TAKE-HOME (GROSS A − DEDUCTIONS B)
+                    </span>
+                    <strong className="text-2xl font-black text-white font-mono tracking-tight">₹ 34,976.00</strong>
+                    <span className="text-[11px] text-zinc-300 block mt-0.5">
+                      Amount in Words: <strong>Rupees Thirty Four Thousand Nine Hundred Seventy Six Only</strong>
+                    </span>
+                  </div>
+                  <div className="px-4 py-2 bg-emerald-950 border border-emerald-700/60 rounded-xl text-emerald-300 font-mono text-xs font-bold flex items-center gap-1.5">
+                    <CheckCircle2 className="size-4" />
+                    Direct Bank Transfer (NEFT)
+                  </div>
+                </div>
+
+                {/* Employer Statutory Cost Summary */}
+                <div className="p-4 bg-zinc-900/60 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] border-b border-zinc-800">
+                  <div className="p-2.5 bg-zinc-950 rounded-lg border border-zinc-800 font-mono">
+                    <span className="text-zinc-500 block text-[10px]">Employer EPF (12% on ₹15k):</span>
+                    <strong className="text-zinc-200">₹ 1,800.00</strong>
+                  </div>
+                  <div className="p-2.5 bg-zinc-950 rounded-lg border border-zinc-800 font-mono">
+                    <span className="text-zinc-500 block text-[10px]">Employer ESIC (3.25%):</span>
+                    <strong className="text-zinc-200">₹ 1,260.00</strong>
+                  </div>
+                  <div className="p-2.5 bg-zinc-950 rounded-lg border border-zinc-800 font-mono">
+                    <span className="text-zinc-500 block text-[10px]">Gratuity Provision (4.81%):</span>
+                    <strong className="text-zinc-200">₹ 745.00</strong>
+                  </div>
+                </div>
+
+                {/* Payslip Footnote */}
+                <div className="p-4 bg-zinc-950 text-[10px] text-zinc-500 flex flex-col sm:flex-row justify-between items-center gap-2">
+                  <span>This is a computer-generated statutory payroll statement under the Payment of Wages Act, 1936. No physical signature required.</span>
+                  <span className="font-mono text-zinc-400">Employer Cost (CTC): ₹ 42,572.00</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* --------------------------------------------------------------------- */}
+          {/* SUB-TAB 2: DAILY WAGE WORKER (PER-DAY RATE & WEEKLY OFFS) */}
+          {/* --------------------------------------------------------------------- */}
+          {activeWageSubTab === "daily_wage" && (
+            <div className="space-y-6">
+              <div className="bg-zinc-900/60 border border-emerald-500/30 p-5 rounded-2xl space-y-4">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
+                  <div>
+                    <h4 className="text-sm font-bold text-emerald-300 flex items-center gap-2">
+                      <Factory className="size-4" />
+                      2. Daily Wage Worker: Real-World Plant & Factory Operations
+                    </h4>
+                    <span className="text-[11px] text-zinc-400">
+                      Standard in Assembly Lines, Construction, Heavy Machinery, Warehouses, and Plant Maintenance.
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded-lg font-mono font-bold">
+                    Formula: (Present Days × Daily Rate) + Paid Sundays + 2.0x Double OT
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800/80 space-y-1.5">
+                    <strong className="text-emerald-300 block font-semibold flex items-center gap-1.5">
+                      <Sun className="size-3.5" />
+                      A. Mandatory Paid Weekly Offs (Sundays)
+                    </strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Under <em>Section 52 of the Factories Act & Weekly Holidays Act</em>, every worker who completes a 6-day work week is entitled to a <strong>Paid Weekly Rest Day</strong> at their full daily rate.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800/80 space-y-1.5">
+                    <strong className="text-emerald-300 block font-semibold flex items-center gap-1.5">
+                      <Clock className="size-3.5" />
+                      B. Factories Act 2.0x Overtime Multiplier
+                    </strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Hourly Base Rate = <code className="text-zinc-200">Daily Rate ÷ 8 Hours</code>. Any extra shift hours worked on weekdays or Sundays receive statutory <strong>2.0x Double Wages</strong>.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800/80 space-y-1.5">
+                    <strong className="text-emerald-300 block font-semibold flex items-center gap-1.5">
+                      <HeartPulse className="size-3.5" />
+                      C. ESIC Medical Cover (0.75% / 3.25%)
+                    </strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Since daily wage workers typically earn under ₹21,000 monthly gross, ESIC deduction gives them and their families 100% free medical treatment in ESIC dispensaries and cash sickness benefits.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* LIVE REALISTIC SALARY SLIP (DAILY WAGE) */}
+              <div className="bg-zinc-950 border-2 border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
+                <div className="bg-gradient-to-r from-zinc-900 to-zinc-950 p-5 border-b border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="p-1.5 bg-emerald-950 border border-emerald-700 text-emerald-300 rounded-lg font-bold font-mono text-[11px]">
+                        PAYSLIP
+                      </span>
+                      <h3 className="font-black text-sm text-zinc-100 tracking-tight">ACME TECHNOLOGIES PVT LTD</h3>
+                    </div>
+                    <span className="text-[10px] text-zinc-400 block mt-0.5">Manufacturing & Heavy Assembly Division • Peenya Plant 1</span>
+                  </div>
+                  <div className="text-left sm:text-right">
+                    <span className="text-xs font-mono font-bold text-emerald-400 block">PAYSLIP FOR: AUGUST 2026</span>
+                    <span className="text-[10px] text-zinc-500 font-mono">Muster Roll Ref: MR-2026-08</span>
+                  </div>
+                </div>
+
+                <div className="p-5 bg-zinc-900/40 border-b border-zinc-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-[11px]">
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Employee Name</span>
+                    <strong className="text-zinc-100 font-bold text-xs">EMP003 - Ramesh Kumar</strong>
+                    <span className="text-zinc-400 block text-[10px]">Plant Machine Operator (Skilled)</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Wage Structure</span>
+                    <strong className="text-emerald-300 font-bold">DAILY_WAGE @ ₹650 / Day</strong>
+                    <span className="text-zinc-400 block text-[10px]">Ordinary Hr: ₹81.25 / hr</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Attendance Breakdown</span>
+                    <strong className="text-zinc-200">24 Present + 4 Sundays + 1 Holiday</strong>
+                    <span className="text-zinc-400 block text-[10px]">Payable Days: 29 Days</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Bank & ESIC</span>
+                    <span className="text-zinc-300 font-mono block text-[10px]">SBI A/c: 3012XXXXX789</span>
+                    <span className="text-zinc-400 font-mono block text-[10px]">ESIC: 50000123450000001</span>
+                  </div>
+                </div>
+
+                <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Earnings */}
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center pb-2 border-b-2 border-emerald-800/60">
+                      <strong className="text-emerald-400 font-bold text-xs uppercase tracking-wider">Earnings (Gross Pay)</strong>
+                      <span className="text-[10px] text-zinc-400 font-mono">Amount (₹)</span>
+                    </div>
+
+                    <div className="space-y-2 text-xs">
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Daily Work Wages</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">24 Present Days × ₹650.00/day</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 15,600.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Paid Weekly Offs (Sundays)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">4 Sundays × ₹650.00/day</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 2,600.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Paid Statutory Holiday (Independence Day)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">1 Declared Public Holiday × ₹650.00</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 650.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Approved Overtime (Factories Act 2.0x)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">16 OT Hours @ (₹81.25 × 2.0x Double)</span>
+                        </div>
+                        <span className="font-mono font-bold text-emerald-400">₹ 2,600.00</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex justify-between items-center text-xs font-bold text-emerald-400 bg-emerald-950/20 p-2.5 rounded-xl border border-emerald-800/40">
+                      <span>TOTAL GROSS EARNINGS (A):</span>
+                      <span className="font-mono text-sm">₹ 21,450.00</span>
+                    </div>
+                  </div>
+
+                  {/* Deductions */}
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center pb-2 border-b-2 border-rose-800/60">
+                      <strong className="text-rose-400 font-bold text-xs uppercase tracking-wider">Deductions</strong>
+                      <span className="text-[10px] text-zinc-400 font-mono">Amount (₹)</span>
+                    </div>
+
+                    <div className="space-y-2 text-xs">
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Employee State Insurance (ESIC 0.75%)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">0.75% of Gross Wages</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 161.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Professional Tax (PT)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">State Professional Tax Deduction</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 200.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Plant Canteen / Mess Recovery</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">Subsidized monthly meal coupon charges</span>
+                        </div>
+                        <span className="font-mono font-bold text-rose-400">₹ 1,000.00</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex justify-between items-center text-xs font-bold text-rose-400 bg-rose-950/20 p-2.5 rounded-xl border border-rose-800/40">
+                      <span>TOTAL DEDUCTIONS (B):</span>
+                      <span className="font-mono text-sm">₹ 1,361.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-5 bg-gradient-to-r from-emerald-950/60 via-zinc-900 to-emerald-950/60 border-t border-b border-emerald-500/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                  <div>
+                    <span className="text-[10px] text-emerald-300 font-bold uppercase tracking-widest block">
+                      NET TAKE-HOME PAY (BANK CREDIT)
+                    </span>
+                    <strong className="text-2xl font-black text-white font-mono tracking-tight">₹ 20,089.00</strong>
+                    <span className="text-[11px] text-zinc-300 block mt-0.5">
+                      Amount in Words: <strong>Rupees Twenty Thousand Eighty Nine Only</strong>
+                    </span>
+                  </div>
+                  <div className="px-4 py-2 bg-emerald-950 border border-emerald-700/60 rounded-xl text-emerald-300 font-mono text-xs font-bold">
+                    SBI Direct Bank Transfer
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* --------------------------------------------------------------------- */}
+          {/* SUB-TAB 3: HOURLY RATE (SPECIALISTS & CONSULTANTS) */}
+          {/* --------------------------------------------------------------------- */}
+          {activeWageSubTab === "hourly_rate" && (
+            <div className="space-y-6">
+              <div className="bg-zinc-900/60 border border-cyan-500/30 p-5 rounded-2xl space-y-4">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
+                  <div>
+                    <h4 className="text-sm font-bold text-cyan-300 flex items-center gap-2">
+                      <Clock className="size-4" />
+                      3. Hourly Rate Consulting: Tech Specialists & Freelance Retainers
+                    </h4>
+                    <span className="text-[11px] text-zinc-400">
+                      Standard for UI/UX Specialists, On-Call DevOps Engineers, Corporate Trainers, and Visiting Doctors.
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 bg-cyan-950 text-cyan-300 border border-cyan-800 rounded-lg font-mono font-bold">
+                    Formula: (Logged Hours × Hourly Rate) + 1.5x Shift Extension + Milestone Bonus
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800/80 space-y-1.5">
+                    <strong className="text-cyan-300 block font-semibold flex items-center gap-1.5">
+                      <FileText className="size-3.5" />
+                      A. Verified Timesheet Billing
+                    </strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Consultants log hours into project management tools (Jira, Clockify, Git commits). Payroll runs on approved timesheets up to monthly contract cap (typically 160 hrs).
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800/80 space-y-1.5">
+                    <strong className="text-cyan-300 block font-semibold flex items-center gap-1.5">
+                      <TrendingUp className="size-3.5" />
+                      B. Emergency On-Call & Extension Multiplier
+                    </strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Weekend critical maintenance, incident response, or rush deliverables beyond 160 hrs are compensated at <strong>1.5x or 2.0x contract multiplier</strong>.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800/80 space-y-1.5">
+                    <strong className="text-cyan-300 block font-semibold flex items-center gap-1.5">
+                      <Landmark className="size-3.5" />
+                      C. Professional TDS (Sec 194J / Sec 192)
+                    </strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Depending on contract structure (Employee vs Retained Professional), statutory TDS under Section 194J (10%/2%) or salary slab TDS is deducted at source.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* LIVE REALISTIC SALARY SLIP (HOURLY) */}
+              <div className="bg-zinc-950 border-2 border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
+                <div className="bg-gradient-to-r from-zinc-900 to-zinc-950 p-5 border-b border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="p-1.5 bg-cyan-950 border border-cyan-700 text-cyan-300 rounded-lg font-bold font-mono text-[11px]">
+                        PAYSLIP
+                      </span>
+                      <h3 className="font-black text-sm text-zinc-100 tracking-tight">ACME TECHNOLOGIES PVT LTD</h3>
+                    </div>
+                    <span className="text-[10px] text-zinc-400 block mt-0.5">Specialized Consulting & Digital Advisory Services</span>
+                  </div>
+                  <div className="text-left sm:text-right">
+                    <span className="text-xs font-mono font-bold text-cyan-400 block">PAYSLIP FOR: AUGUST 2026</span>
+                    <span className="text-[10px] text-zinc-500 font-mono">Timesheet Batch: TS-2026-AUG</span>
+                  </div>
+                </div>
+
+                <div className="p-5 bg-zinc-900/40 border-b border-zinc-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-[11px]">
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Consultant Name</span>
+                    <strong className="text-zinc-100 font-bold text-xs">EMP005 - Deepa Krishnan</strong>
+                    <span className="text-zinc-400 block text-[10px]">Design Systems Lead Consultant</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Billing Rate</span>
+                    <strong className="text-cyan-300 font-bold">HOURLY @ ₹450 / Hour</strong>
+                    <span className="text-zinc-400 block text-[10px]">Overtime Multiplier: 1.5x</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Timesheet Logged</span>
+                    <strong className="text-zinc-200">160 Regular + 20 Emergency OT</strong>
+                    <span className="text-zinc-400 block text-[10px]">Total Hours: 180 Hours</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Bank Details</span>
+                    <span className="text-zinc-300 font-mono block text-[10px]">Kotak Bank: 4019XXXX645</span>
+                    <span className="text-zinc-400 font-mono block text-[10px]">PAN: KRNJ4567D</span>
+                  </div>
+                </div>
+
+                <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Earnings */}
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center pb-2 border-b-2 border-emerald-800/60">
+                      <strong className="text-emerald-400 font-bold text-xs uppercase tracking-wider">Earnings (Gross Pay)</strong>
+                      <span className="text-[10px] text-zinc-400 font-mono">Amount (₹)</span>
+                    </div>
+
+                    <div className="space-y-2 text-xs">
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Regular Retainer Consulting Pay</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">160 Approved Timesheet Hours × ₹450.00/hr</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 72,000.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Shift Extension & Overtime Pay</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">20 Night On-Call Hours @ (₹450 × 1.5x = ₹675/hr)</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 13,500.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Design System Milestone Bonus</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">Figma Design Token Release Target Bonus</span>
+                        </div>
+                        <span className="font-mono font-bold text-emerald-400">₹ 5,000.00</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex justify-between items-center text-xs font-bold text-emerald-400 bg-emerald-950/20 p-2.5 rounded-xl border border-emerald-800/40">
+                      <span>TOTAL GROSS EARNINGS (A):</span>
+                      <span className="font-mono text-sm">₹ 90,500.00</span>
+                    </div>
+                  </div>
+
+                  {/* Deductions */}
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center pb-2 border-b-2 border-rose-800/60">
+                      <strong className="text-rose-400 font-bold text-xs uppercase tracking-wider">Deductions & TDS</strong>
+                      <span className="text-[10px] text-zinc-400 font-mono">Amount (₹)</span>
+                    </div>
+
+                    <div className="space-y-2 text-xs">
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Professional Tax (PT)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">State Professional Tax Deduction</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 200.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Tax Deducted at Source (TDS Sec 194J)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">Professional Technical Fees 5% TDS</span>
+                        </div>
+                        <span className="font-mono font-bold text-rose-400">₹ 4,525.00</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex justify-between items-center text-xs font-bold text-rose-400 bg-rose-950/20 p-2.5 rounded-xl border border-rose-800/40">
+                      <span>TOTAL DEDUCTIONS (B):</span>
+                      <span className="font-mono text-sm">₹ 4,725.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-5 bg-gradient-to-r from-cyan-950/60 via-zinc-900 to-cyan-950/60 border-t border-b border-cyan-500/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                  <div>
+                    <span className="text-[10px] text-cyan-300 font-bold uppercase tracking-widest block">
+                      NET REMITTANCE TO CONSULTANT
+                    </span>
+                    <strong className="text-2xl font-black text-white font-mono tracking-tight">₹ 85,775.00</strong>
+                    <span className="text-[11px] text-zinc-300 block mt-0.5">
+                      Amount in Words: <strong>Rupees Eighty Five Thousand Seven Hundred Seventy Five Only</strong>
+                    </span>
+                  </div>
+                  <div className="px-4 py-2 bg-cyan-950 border border-cyan-700/60 rounded-xl text-cyan-300 font-mono text-xs font-bold">
+                    Kotak IMPS Credit
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* --------------------------------------------------------------------- */}
+          {/* SUB-TAB 4: MONTHLY SALARIED (CORPORATE WHITE-COLLAR CTC) */}
+          {/* --------------------------------------------------------------------- */}
+          {activeWageSubTab === "monthly_salaried" && (
+            <div className="space-y-6">
+              <div className="bg-zinc-900/60 border border-indigo-500/30 p-5 rounded-2xl space-y-4">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
+                  <div>
+                    <h4 className="text-sm font-bold text-indigo-300 flex items-center gap-2">
+                      <Briefcase className="size-4" />
+                      4. Monthly Salaried: Corporate Cost to Company (CTC) Structure
+                    </h4>
+                    <span className="text-[11px] text-zinc-400">
+                      Standard for Software Engineers, Product Managers, Corporate Finance, HR, and Operations Management.
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 bg-indigo-950 text-indigo-300 border border-indigo-800 rounded-lg font-mono font-bold">
+                    Formula: (Monthly CTC − Employer PF/Gratuity) Pro-rated by LOP Days
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800/80 space-y-1.5">
+                    <strong className="text-indigo-300 block font-semibold flex items-center gap-1.5">
+                      <Calculator className="size-3.5" />
+                      A. 50% Basic Salary Rule
+                    </strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Under the <em>Code on Wages 2019</em>, Basic + DA must comprise at least <strong>50% of total compensation</strong> to ensure robust statutory retirement benefits (EPF, Gratuity, and Leave Encashment).
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800/80 space-y-1.5">
+                    <strong className="text-indigo-300 block font-semibold flex items-center gap-1.5">
+                      <Calendar className="size-3.5" />
+                      B. Loss of Pay (LOP) Pro-ration
+                    </strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      When an employee takes unpaid leave: <code className="text-zinc-200">Proration Ratio = Payable Days ÷ Calendar Days (31)</code>. All prorated earnings (Basic, HRA, Special Allowance) are automatically adjusted.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800/80 space-y-1.5">
+                    <strong className="text-indigo-300 block font-semibold flex items-center gap-1.5">
+                      <Home className="size-3.5" />
+                      C. Tax Exemption under Sec 10(13A)
+                    </strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      HRA (40% to 50% of Basic) provides tax exemptions under Old Regime. Special Allowance acts as the residual balance component to match exact agreed monthly CTC.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* LIVE REALISTIC SALARY SLIP (MONTHLY SALARIED) */}
+              <div className="bg-zinc-950 border-2 border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
+                <div className="bg-gradient-to-r from-zinc-900 to-zinc-950 p-5 border-b border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="p-1.5 bg-indigo-950 border border-indigo-700 text-indigo-300 rounded-lg font-bold font-mono text-[11px]">
+                        PAYSLIP
+                      </span>
+                      <h3 className="font-black text-sm text-zinc-100 tracking-tight">ACME TECHNOLOGIES PVT LTD</h3>
+                    </div>
+                    <span className="text-[10px] text-zinc-400 block mt-0.5">Corporate HQ, Outer Ring Road, Bengaluru 560103</span>
+                  </div>
+                  <div className="text-left sm:text-right">
+                    <span className="text-xs font-mono font-bold text-indigo-400 block">PAYSLIP FOR: AUGUST 2026</span>
+                    <span className="text-[10px] text-zinc-500 font-mono">Tax Regime: New Regime (Sec 115BAC)</span>
+                  </div>
+                </div>
+
+                <div className="p-5 bg-zinc-900/40 border-b border-zinc-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-[11px]">
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Employee Name</span>
+                    <strong className="text-zinc-100 font-bold text-xs">EMP001 - Rahul Sharma</strong>
+                    <span className="text-zinc-400 block text-[10px]">Lead Systems Architect (Engineering)</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Annual CTC</span>
+                    <strong className="text-indigo-300 font-bold font-mono">₹ 12,00,000 / Annum</strong>
+                    <span className="text-zinc-400 block text-[10px]">Monthly CTC: ₹ 1,00,000 / mo</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Working Days (LOP: 1 Day)</span>
+                    <strong className="text-zinc-200">30 Payable Days (out of 31)</strong>
+                    <span className="text-zinc-400 block text-[10px]">LOP Proration: 30/31</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 block text-[10px] uppercase font-bold tracking-wider">Statutory Details</span>
+                    <span className="text-zinc-300 font-mono block text-[10px]">HDFC A/c: 5010XXXXXX7890</span>
+                    <span className="text-zinc-400 font-mono block text-[10px]">PAN: ABCDE1234F • UAN: 100987654321</span>
+                  </div>
+                </div>
+
+                <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Earnings */}
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center pb-2 border-b-2 border-emerald-800/60">
+                      <strong className="text-emerald-400 font-bold text-xs uppercase tracking-wider">Earnings (Gross Pay)</strong>
+                      <span className="text-[10px] text-zinc-400 font-mono">Amount (₹)</span>
+                    </div>
+
+                    <div className="space-y-2 text-xs">
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Basic Salary (50% CTC)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">Base ₹50,000 (Prorated for 30/31 Days)</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 48,387.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">House Rent Allowance (HRA 40%)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">40% of Basic (Prorated for 30/31 Days)</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 19,355.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Internet & WFH Allowance</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">Broadband & remote work support</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 1,500.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Special Balancing Allowance</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">Residual allowance (Prorated for 30/31 Days)</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 22,091.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Quarterly Architecture Incentive</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">Approved Performance Spot Reward</span>
+                        </div>
+                        <span className="font-mono font-bold text-emerald-400">₹ 5,000.00</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex justify-between items-center text-xs font-bold text-emerald-400 bg-emerald-950/20 p-2.5 rounded-xl border border-emerald-800/40">
+                      <span>TOTAL GROSS EARNINGS (A):</span>
+                      <span className="font-mono text-sm">₹ 96,333.00</span>
+                    </div>
+                  </div>
+
+                  {/* Deductions */}
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center pb-2 border-b-2 border-rose-800/60">
+                      <strong className="text-rose-400 font-bold text-xs uppercase tracking-wider">Deductions & Taxes</strong>
+                      <span className="text-[10px] text-zinc-400 font-mono">Amount (₹)</span>
+                    </div>
+
+                    <div className="space-y-2 text-xs">
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Employee Provident Fund (EPF 12%)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">12% on ₹15,000 statutory ceiling</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 1,800.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Professional Tax (PT Karnataka)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">State Professional Tax</span>
+                        </div>
+                        <span className="font-mono font-bold text-zinc-100">₹ 200.00</span>
+                      </div>
+
+                      <div className="flex justify-between py-1 border-b border-zinc-800/60">
+                        <div>
+                          <strong className="text-zinc-200 block">Income Tax TDS (Monthly Installment)</strong>
+                          <span className="text-[10px] text-zinc-500 font-mono">TDS under New Tax Regime projected tax</span>
+                        </div>
+                        <span className="font-mono font-bold text-rose-400">₹ 4,500.00</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex justify-between items-center text-xs font-bold text-rose-400 bg-rose-950/20 p-2.5 rounded-xl border border-rose-800/40">
+                      <span>TOTAL DEDUCTIONS (B):</span>
+                      <span className="font-mono text-sm">₹ 6,500.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-5 bg-gradient-to-r from-indigo-950/60 via-zinc-900 to-indigo-950/60 border-t border-b border-indigo-500/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                  <div>
+                    <span className="text-[10px] text-indigo-300 font-bold uppercase tracking-widest block">
+                      NET SALARY CREDITED TO BANK
+                    </span>
+                    <strong className="text-2xl font-black text-white font-mono tracking-tight">₹ 89,833.00</strong>
+                    <span className="text-[11px] text-zinc-300 block mt-0.5">
+                      Amount in Words: <strong>Rupees Eighty Nine Thousand Eight Hundred Thirty Three Only</strong>
+                    </span>
+                  </div>
+                  <div className="px-4 py-2 bg-indigo-950 border border-indigo-700/60 rounded-xl text-indigo-300 font-mono text-xs font-bold">
+                    HDFC Direct Salary Account
+                  </div>
+                </div>
+
+                {/* Employer Contributions breakdown */}
+                <div className="p-4 bg-zinc-900/60 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] border-b border-zinc-800">
+                  <div className="p-2.5 bg-zinc-950 rounded-lg border border-zinc-800 font-mono">
+                    <span className="text-zinc-500 block text-[10px]">Employer EPF (12% on ₹15k):</span>
+                    <strong className="text-zinc-200">₹ 1,800.00</strong>
+                  </div>
+                  <div className="p-2.5 bg-zinc-950 rounded-lg border border-zinc-800 font-mono">
+                    <span className="text-zinc-500 block text-[10px]">Gratuity Provision (4.81% of Basic):</span>
+                    <strong className="text-zinc-200">₹ 2,327.00</strong>
+                  </div>
+                  <div className="p-2.5 bg-zinc-950 rounded-lg border border-zinc-800 font-mono">
+                    <span className="text-zinc-500 block text-[10px]">Group Health & Life Insurance:</span>
+                    <strong className="text-zinc-200">₹ 1,000.00</strong>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-zinc-950 text-[10px] text-zinc-500 flex flex-col sm:flex-row justify-between items-center gap-2">
+                  <span>Confidential Payroll Document • Generated by Hisaab Centralized Payroll Engine</span>
+                  <span className="font-mono text-zinc-400">Total Employer Cost (CTC): ₹ 1,01,460.00</span>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* ========================================================================= */}
       {/* TAB 1: ALL REAL-WORLD SALARY COMPONENTS (EARNINGS, DEDUCTIONS, EMPLOYER) */}
