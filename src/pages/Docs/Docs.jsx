@@ -1516,10 +1516,10 @@ export default function Docs() {
               <div>
                 <h3 className="text-sm font-bold text-zinc-100 flex items-center gap-2">
                   <ShieldCheck className="size-4 text-indigo-400" />
-                  Indian Statutory Compliance & Labour Laws Reference
+                  Indian Statutory Compliance, Labour Laws & System Settings Reference
                 </h3>
                 <p className="text-zinc-400 text-[11px] mt-0.5">
-                  Understand real-world legal mandates and exactly how Hisaab Payroll automates every rule.
+                  Complete guide to legal mandates, system configuration fields, calculation options, and automated payroll engine logic.
                 </p>
               </div>
               <div className="flex items-center gap-2">
@@ -1600,10 +1600,10 @@ export default function Docs() {
                   <div className="space-y-2">
                     <strong className="text-zinc-100 block">Applicability & Official Ceilings:</strong>
                     <ul className="text-zinc-400 text-[11px] space-y-1">
-                      <li>• <strong>Applicability:</strong> Mandatory for all establishments with <strong>20 or more employees</strong>.</li>
+                      <li>• <strong>Applicability:</strong> Mandatory for all establishments employing <strong>20 or more persons</strong>.</li>
                       <li>• <strong>Statutory Wage Ceiling:</strong> Compulsory for employees earning Basic + DA up to <strong>₹15,000/month</strong>.</li>
-                      <li>• <strong>Interest Rate:</strong> Safe government-guaranteed interest (~8.25% p.a.) compounded annually.</li>
-                      <li>• <strong>VPF (Voluntary PF):</strong> Employee can contribute &gt; 12% voluntarily to save more tax-free interest.</li>
+                      <li>• <strong>Interest Rate:</strong> Government-guaranteed safe interest (~8.25% p.a.) compounded annually.</li>
+                      <li>• <strong>VPF (Voluntary PF):</strong> Employees can voluntarily contribute beyond 12% to accumulate more tax-exempt retirement corpus.</li>
                     </ul>
                   </div>
 
@@ -1631,38 +1631,82 @@ export default function Docs() {
                 </div>
               </div>
 
-              {/* Card 2: System Implementation */}
-              <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
-                <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
-                  <CheckCircle2 className="size-4" />
-                  2. System Implementation & Calculation Flow
-                </h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-zinc-300">
-                  <div className="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800/80 space-y-1">
-                    <strong className="text-zinc-200 text-xs">A. Tier-1 Master Law Lock</strong>
+              {/* Card 2: System Configuration Fields & Options */}
+              <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-4">
+                <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
+                  <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
+                    <Sliders className="size-4" />
+                    2. System Configuration Fields & Policy Options (In Statutory Components)
+                  </h4>
+                  <span className="text-[10px] text-zinc-500 font-mono">Route: /statutory &gt; EPF Tab</span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
+                  {/* Field 1 */}
+                  <div className="p-3.5 bg-zinc-900/60 rounded-xl border border-zinc-800 space-y-1">
+                    <div className="flex justify-between items-start">
+                      <strong className="text-indigo-300 text-xs">1. Firm PF Establishment Code</strong>
+                      <span className="text-[9px] bg-indigo-950 text-indigo-300 px-1.5 py-0.5 rounded font-mono">15-Digit ID</span>
+                    </div>
                     <p className="text-zinc-400 text-[11px]">
-                      The 12% deduction percentage and ₹15,000 ceiling are locked centrally in the master engine. No manual rate tampering is possible.
+                      <strong>What it means:</strong> The unique establishment registration number issued by EPFO (e.g. <code>TN/TBM/9987788/688</code>) comprising State Code, Regional Office, Establishment ID, and Extension. Used in monthly Electronic Challan cum Return (ECR) generation.
                     </p>
                   </div>
-                  <div className="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800/80 space-y-1">
-                    <strong className="text-zinc-200 text-xs">B. Firm Policy Capping Choice</strong>
+
+                  {/* Field 2 */}
+                  <div className="p-3.5 bg-zinc-900/60 rounded-xl border border-zinc-800 space-y-1">
+                    <div className="flex justify-between items-start">
+                      <strong className="text-indigo-300 text-xs">2. Contribution Policy (Wage Capping Choice)</strong>
+                      <span className="text-[9px] bg-purple-950 text-purple-300 px-1.5 py-0.5 rounded font-mono">Policy Selection</span>
+                    </div>
                     <p className="text-zinc-400 text-[11px]">
-                      In <strong>Statutory Components</strong> page, company configures whether to cap at ₹15,000 (₹1,800/mo max) or compute on full actual Basic wage.
+                      <strong>Options available:</strong><br />
+                      • <strong>Restrict to Statutory Ceiling (₹15,000 / Max ₹1,800/mo):</strong> For employees earning &gt; ₹15k Basic, calculation is strictly capped on ₹15,000 base (₹1,800 deduction). Maximizes take-home cash.<br />
+                      • <strong>Contribute on Full Actual Basic:</strong> Computes full 12% on actual Basic salary (e.g. 12% of ₹50,000 = ₹6,000/mo). Builds larger retirement corpus.
                     </p>
                   </div>
-                  <div className="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800/80 space-y-1">
-                    <strong className="text-zinc-200 text-xs">C. Automated Payroll Engine Run</strong>
+
+                  {/* Field 3 */}
+                  <div className="p-3.5 bg-zinc-900/60 rounded-xl border border-zinc-800 space-y-1">
+                    <div className="flex justify-between items-start">
+                      <strong className="text-indigo-300 text-xs">3. Include Employer PF in CTC</strong>
+                      <span className="text-[9px] bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded font-mono">Checkbox Toggle</span>
+                    </div>
                     <p className="text-zinc-400 text-[11px]">
-                      During payroll runs, <code>payrollCalculator.js</code> evaluates pro-rated earned basic, deducts Employee PF, and posts employer EPS/EPF shares into ledger.
+                      <strong>Checked:</strong> The employer's 12% matching contribution (₹1,800/mo) is factored inside the employee's agreed annual CTC package.<br />
+                      <strong>Unchecked:</strong> Employer PF is borne directly by the company as a corporate operational expense outside the CTC.
+                    </p>
+                  </div>
+
+                  {/* Field 4 */}
+                  <div className="p-3.5 bg-zinc-900/60 rounded-xl border border-zinc-800 space-y-1">
+                    <div className="flex justify-between items-start">
+                      <strong className="text-indigo-300 text-xs">4. Include Admin / EDLI in CTC</strong>
+                      <span className="text-[9px] bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded font-mono">Checkbox Toggle</span>
+                    </div>
+                    <p className="text-zinc-400 text-[11px]">
+                      <strong>Checked:</strong> The 0.50% EDLI life insurance fee (₹75) + 0.50% EPFO administrative handling charge (₹75) = 1.0% (₹150/mo) is incorporated inside the employee's monthly CTC.<br />
+                      <strong>Unchecked:</strong> The company absorbs the ₹150 administrative charge as general overhead.
+                    </p>
+                  </div>
+
+                  {/* Field 5 */}
+                  <div className="p-3.5 bg-zinc-900/60 rounded-xl border border-zinc-800 space-y-1 col-span-1 md:col-span-2">
+                    <div className="flex justify-between items-start">
+                      <strong className="text-indigo-300 text-xs">5. Enable Voluntary PF (VPF)</strong>
+                      <span className="text-[9px] bg-emerald-950 text-emerald-300 px-1.5 py-0.5 rounded font-mono">Employee Opt-in</span>
+                    </div>
+                    <p className="text-zinc-400 text-[11px]">
+                      <strong>Checked:</strong> Allows employees to opt-in for additional voluntary deductions (e.g. 20%, 30%, or 50% of Basic) via their self-service portal to earn government-guaranteed 8.25% tax-free interest under Section 80C. <em>(Note: Employer matching share remains capped at standard 12%)</em>.
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Card 3: Example Walkthrough */}
+              {/* Card 3: Live Simulator */}
               <div className="p-4 bg-indigo-950/20 border border-indigo-800/40 rounded-xl space-y-2">
                 <span className="font-bold text-xs text-indigo-300 uppercase tracking-wider block font-mono">
-                  📊 Real-World Calculation Walkthrough (Example: Basic = ₹30,000 with ₹15k Capping)
+                  📊 Live Statutory EPF Split Simulator (Example: Basic = ₹30,000 with Capping)
                 </span>
                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 font-mono text-[11px]">
                   <div className="p-2 bg-zinc-950 rounded border border-zinc-800">
@@ -1703,7 +1747,7 @@ export default function Docs() {
                       1. Legal Concept & Statutory Mandate: Employees' State Insurance Act, 1948
                     </h4>
                     <span className="text-[11px] text-zinc-400">
-                      Comprehensive healthcare and social security for blue-collar and factory workers.
+                      Comprehensive healthcare, maternity, and disability social security for industrial and plant workers.
                     </span>
                   </div>
                   <span className="px-2.5 py-1 bg-cyan-950 text-cyan-300 border border-cyan-800 rounded-lg font-mono font-bold">
@@ -1713,32 +1757,45 @@ export default function Docs() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
                   <div className="space-y-1.5">
-                    <strong className="text-zinc-100 block">Eligibility & ₹21,000 Wage Limit:</strong>
+                    <strong className="text-zinc-100 block">Eligibility & Wage Limit:</strong>
                     <p className="text-zinc-400 text-[11px]">
-                      Applicable to establishments with 10+ employees. Covers all employees with <strong>Monthly Gross Salary $\le$ ₹21,000</strong> (₹25,000 for persons with disabilities).
+                      Mandatory for non-seasonal factories and establishments with 10+ employees. Applies to all employees with <strong>Monthly Gross Wages &le; ₹21,000</strong> (₹25,000 for employees with physical disabilities).
                     </p>
                   </div>
                   <div className="space-y-1.5">
                     <strong className="text-zinc-100 block">6-Month Contribution Cycle Rule:</strong>
                     <p className="text-zinc-400 text-[11px]">
-                      Runs in two 6-month cycles (April–Sept & Oct–March). If salary increases above ₹21k mid-cycle, ESIC deduction continues till that cycle ends.
+                      Operates in two statutory 6-month cycles (April–Sept & Oct–March). If an employee's gross wage crosses ₹21,000 mid-cycle, deductions legally continue until the contribution period concludes.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
+              {/* System Configuration Fields */}
+              <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-4">
                 <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
-                  <CheckCircle2 className="size-4" />
-                  2. System Implementation & Calculation Flow
+                  <Sliders className="size-4" />
+                  2. System Configuration Fields & Settings (In Statutory Components)
                 </h4>
-                <p className="text-zinc-300 text-xs">
-                  In <code>payrollCalculator.js</code>, when calculating wages for Daily Wage and Piece Rate workers, the engine checks <code>earnedGrossAcc &le; 21000</code>:
-                </p>
-                <div className="p-3 bg-zinc-900 font-mono text-[11px] rounded-xl border border-zinc-800 text-zinc-300 space-y-1">
-                  <div>• <code>Employee ESIC = Math.ceil(earnedGrossAcc * 0.0075)</code> (Deducted from Take-Home)</div>
-                  <div>• <code>Employer ESIC = Math.ceil(earnedGrossAcc * 0.0325)</code> (Added to Company CTC Cost)</div>
-                  <div>• If Gross &gt; ₹21,000 $\to$ ESIC automatically sets to ₹0.</div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-zinc-300">
+                  <div className="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800 space-y-1">
+                    <strong className="text-cyan-300 text-xs block">Firm ESIC 17-Digit Registration</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Official establishment identifier (e.g. <code>50000123450000001</code>) used to generate monthly Form 5 ESIC challan reports.
+                    </p>
+                  </div>
+                  <div className="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800 space-y-1">
+                    <strong className="text-cyan-300 text-xs block">Statutory Wage Threshold (₹21k)</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Platform central threshold test. Evaluates total monthly earned gross during each payroll run before applying 0.75% / 3.25%.
+                    </p>
+                  </div>
+                  <div className="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800 space-y-1">
+                    <strong className="text-cyan-300 text-xs block">Include Employer ESIC in CTC</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      When checked, the 3.25% employer healthcare cost is factored into the employee's total CTC budget.
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -1777,7 +1834,7 @@ export default function Docs() {
                       1. Legal Concept & Statutory Mandate: State Professional Tax (PT) Acts
                     </h4>
                     <span className="text-[11px] text-zinc-400">
-                      State-level tax on salaried individuals under Article 276 of the Indian Constitution.
+                      State-level tax on employment empowered by Article 276 of the Constitution of India (Max ₹2,500/year).
                     </span>
                   </div>
                   <span className="px-2.5 py-1 bg-amber-950 text-amber-300 border border-amber-800 rounded-lg font-mono font-bold">
@@ -1790,14 +1847,14 @@ export default function Docs() {
                     <strong className="text-amber-300 text-xs">Karnataka:</strong>
                     <p className="text-zinc-400 text-[11px]">
                       Gross &lt; ₹15,000 = ₹0.<br />
-                      Gross $\ge$ ₹15,000 = <strong>₹200/month</strong>.
+                      Gross &ge; ₹15,000 = <strong>₹200/month</strong>.
                     </p>
                   </div>
                   <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 space-y-1">
                     <strong className="text-amber-300 text-xs">Maharashtra:</strong>
                     <p className="text-zinc-400 text-[11px]">
                       Men &gt; ₹10k = <strong>₹200/mo (₹300 in Feb)</strong>.<br />
-                      Women earning $\le$ ₹25k exempt.
+                      Women earning &le; ₹25k exempt.
                     </p>
                   </div>
                   <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 space-y-1">
@@ -1810,14 +1867,20 @@ export default function Docs() {
                 </div>
               </div>
 
+              {/* System Configuration */}
               <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
                 <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
-                  <CheckCircle2 className="size-4" />
-                  2. System Implementation & Calculation Flow
+                  <Sliders className="size-4" />
+                  2. System Configuration & Automated State Resolver
                 </h4>
                 <p className="text-zinc-300 text-xs">
-                  The system stores <code>MASTER_STATE_PT_SLABS</code> in <code>StatutoryComponents.jsx</code>. When payroll processes an employee, it inspects their work location state (e.g. Karnataka) and monthly gross earnings, automatically applying the correct monthly slab.
+                  The system maintains a built-in <code>MASTER_STATE_PT_SLABS</code> catalog covering Karnataka, Maharashtra, Tamil Nadu, Telangana, Gujarat, and West Bengal. When payroll executes:
                 </p>
+                <div className="p-3 bg-zinc-900 font-mono text-[11px] rounded-xl border border-zinc-800 text-zinc-300 space-y-1">
+                  <div>1. Resolves employee's registered work state (e.g. <code>emp.state = "Karnataka"</code>).</div>
+                  <div>2. Matches monthly earned gross salary against that state's active legal tax bracket.</div>
+                  <div>3. Automatically handles special rules (e.g. Maharashtra February ₹300 surcharge & women exemptions).</div>
+                </div>
               </div>
 
               <div className="p-4 bg-amber-950/20 border border-amber-800/40 rounded-xl space-y-2 font-mono text-[11px]">
@@ -1825,7 +1888,7 @@ export default function Docs() {
                   📊 Real Example: Rahul Sharma (Bengaluru, Karnataka)
                 </span>
                 <p className="text-zinc-400">
-                  Monthly Gross = ₹96,333 $\ge$ ₹15,000 threshold $\to$ Automated Deduction = <strong className="text-emerald-400">₹200.00 / month</strong>.
+                  Monthly Gross = ₹96,333 &ge; ₹15,000 threshold $\to$ Automated Deduction = <strong className="text-emerald-400">₹200.00 / month</strong>.
                 </p>
               </div>
             </div>
@@ -1844,7 +1907,7 @@ export default function Docs() {
                       1. Legal Concept & Statutory Mandate: Payment of Gratuity Act, 1972
                     </h4>
                     <span className="text-[11px] text-zinc-400">
-                      Statutory terminal retirement benefit for 5+ years of continuous service.
+                      Statutory lump-sum retirement & separation benefit for completing 5+ years of continuous service.
                     </span>
                   </div>
                   <span className="px-2.5 py-1 bg-purple-950 text-purple-300 border border-purple-800 rounded-lg font-mono font-bold">
@@ -1856,31 +1919,32 @@ export default function Docs() {
                   <div className="space-y-1.5">
                     <strong className="text-zinc-100 block">5-Year Continuous Service Rule:</strong>
                     <p className="text-zinc-400 text-[11px]">
-                      Payable on separation (resignation, retirement, or termination) after completing 5 continuous years. Waived in case of death or permanent disability.
+                      Payable on resignation, retirement, or contract termination after 5 full continuous years. The 5-year requirement is legally waived upon death or permanent disablement.
                     </p>
                   </div>
                   <div className="space-y-1.5">
                     <strong className="text-zinc-100 block">Monthly CTC Provisioning:</strong>
                     <p className="text-zinc-400 text-[11px]">
-                      15 days wages per year based on a 26-day working month: <code className="text-purple-300">15 ÷ (26 × 12) = 4.81% of Basic</code>. Tax exempt up to <strong>₹20,00,000</strong> (Sec 10(10)).
+                      15 days wages per year based on a 26-day working month: <code className="text-purple-300">15 ÷ (26 × 12) = 4.81% of Basic</code>. 100% tax exempt up to <strong>₹20,00,000</strong> (Section 10(10)).
                     </p>
                   </div>
                 </div>
               </div>
 
+              {/* System Implementation */}
               <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
                 <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
-                  <CheckCircle2 className="size-4" />
-                  2. System Implementation & Calculation Flow
+                  <Sliders className="size-4" />
+                  2. System Configuration & Monthly Accrual Logic
                 </h4>
                 <p className="text-zinc-300 text-xs">
-                  In <code>salaryCalculator.js</code> and <code>payrollCalculator.js</code>, Gratuity is treated as an <strong>Employer Contribution Component (COMP_GRATUITY)</strong>:
+                  In <code>salaryCalculator.js</code>, Gratuity is modeled as an <strong>Employer Contribution Component (COMP_GRATUITY)</strong>:
                 </p>
                 <div className="p-3 bg-zinc-900 font-mono text-[11px] rounded-xl border border-zinc-800 text-zinc-300">
-                  <code>Employer Gratuity Provision = Math.round((earnedBasic * 4.81) / 100)</code>
+                  <code>Employer Monthly Provision = Math.round((earnedBasic * 4.81) / 100)</code>
                 </div>
                 <p className="text-zinc-400 text-[11px]">
-                  It is automatically added to the company's monthly CTC cost without reducing the employee's take-home salary.
+                  Accumulates in company accounting books without deducting a single rupee from employee in-hand pay.
                 </p>
               </div>
 
@@ -1915,7 +1979,7 @@ export default function Docs() {
                       1. Legal Concept & Statutory Mandate: Payment of Bonus Act, 1965
                     </h4>
                     <span className="text-[11px] text-zinc-400">
-                      Mandatory annual profit-sharing bonus for establishments with 20+ workers.
+                      Mandatory annual profit-sharing bonus for establishments employing 20 or more persons.
                     </span>
                   </div>
                   <span className="px-2.5 py-1 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded-lg font-mono font-bold">
@@ -1927,7 +1991,7 @@ export default function Docs() {
                   <div className="space-y-1.5">
                     <strong className="text-zinc-100 block">Eligibility & Calculation Ceiling:</strong>
                     <p className="text-zinc-400 text-[11px]">
-                      Employees with monthly salary $\le$ <strong>₹21,000</strong>. Bonus is computed on <strong>₹7,000/month or State Minimum Wage</strong> (whichever is higher).
+                      Applicable to employees earning gross salary &le; <strong>₹21,000/month</strong> who worked at least 30 days. Computed on <strong>₹7,000/month or State Minimum Wage</strong> (whichever is higher).
                     </p>
                   </div>
                   <div className="space-y-1.5">
@@ -1939,13 +2003,14 @@ export default function Docs() {
                 </div>
               </div>
 
+              {/* System Configuration */}
               <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
                 <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
-                  <CheckCircle2 className="size-4" />
-                  2. System Implementation & Calculation Flow
+                  <Sliders className="size-4" />
+                  2. System Configuration & Distribution Engine
                 </h4>
                 <p className="text-zinc-300 text-xs">
-                  In <code>Incentives & Bonuses</code> page, HR can dispatch festive (Diwali/Puja) statutory bonuses. The engine verifies eligibility and disburses it under component <code>COMP_BONUS</code> during the selected payroll run.
+                  In <code>Incentives & Bonuses</code> page, HR configures the bonus pool percentage (8.33% to 20%). The payroll engine verifies employee eligibility and disburses it under component <code>COMP_BONUS</code> during the festive cycle.
                 </p>
               </div>
             </div>
@@ -1964,7 +2029,7 @@ export default function Docs() {
                       1. Legal Concept & Statutory Mandate: Income Tax Act, 1961 - Section 192 (Salaries TDS)
                     </h4>
                     <span className="text-[11px] text-zinc-400">
-                      CBDT monthly tax withholding obligation on projected annual salary income.
+                      CBDT mandatory monthly tax withholding on projected annual taxable salary income.
                     </span>
                   </div>
                   <span className="px-2.5 py-1 bg-rose-950 text-rose-300 border border-rose-800 rounded-lg font-mono font-bold">
@@ -1992,13 +2057,14 @@ export default function Docs() {
                 </div>
               </div>
 
+              {/* System Configuration */}
               <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
                 <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
-                  <CheckCircle2 className="size-4" />
-                  2. System Implementation & Calculation Flow
+                  <Sliders className="size-4" />
+                  2. System Configuration & Deduction Flow
                 </h4>
                 <p className="text-zinc-300 text-xs">
-                  In <code>EmployeeSalaries.jsx</code>, each employee has a <code>tdsMonthly</code> field and <code>taxRegime</code> choice. The payroll engine deducts this exact monthly tax installment as <code>COMP_TDS</code> and tracks cumulative annual deductions for Form 16 generation.
+                  In <code>EmployeeSalaries.jsx</code>, each employee profile stores their <code>taxRegime</code> ("NEW" or "OLD") and calculated <code>tdsMonthly</code> installment. The payroll engine deducts this exact installment as <code>COMP_TDS</code> and logs cumulative taxes for Form 16 / 24Q filing.
                 </p>
               </div>
             </div>
@@ -2017,7 +2083,7 @@ export default function Docs() {
                       1. Legal Concept & Statutory Mandate: State Labour Welfare Fund (LWF) Acts
                     </h4>
                     <span className="text-[11px] text-zinc-400">
-                      State statutory welfare fund for worker health assistance, scholarships, and recreation.
+                      State statutory welfare fund for worker healthcare assistance, child education scholarships, and recreational centers.
                     </span>
                   </div>
                   <span className="px-2.5 py-1 bg-pink-950 text-pink-300 border border-pink-800 rounded-lg font-mono font-bold">
@@ -2041,10 +2107,11 @@ export default function Docs() {
                 </div>
               </div>
 
+              {/* System Configuration */}
               <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
                 <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
-                  <CheckCircle2 className="size-4" />
-                  2. System Implementation & Calculation Flow
+                  <Sliders className="size-4" />
+                  2. System Configuration & Scheduled Payroll Triggers
                 </h4>
                 <p className="text-zinc-300 text-xs">
                   Configured in <code>StatutoryComponents.jsx</code> (LWF Tab) and automatically triggered during June/December payroll cycles based on the employee's work state.
@@ -2090,13 +2157,14 @@ export default function Docs() {
                 </div>
               </div>
 
+              {/* System Configuration */}
               <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
                 <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
-                  <CheckCircle2 className="size-4" />
-                  2. System Implementation & Calculation Flow
+                  <Sliders className="size-4" />
+                  2. System Configuration & Template Integration
                 </h4>
                 <p className="text-zinc-300 text-xs">
-                  In <code>StatutoryComponents.jsx</code> (NPS tab), company enables Corporate NPS with their Scheme ID. It is added as an Employer Contribution <code>COMP_NPS</code> in executive salary templates.
+                  In <code>StatutoryComponents.jsx</code> (NPS tab), the organization registers their Corporate Scheme ID. It is added as an Employer Contribution <code>COMP_NPS</code> in executive salary templates.
                 </p>
               </div>
             </div>
