@@ -48,11 +48,18 @@ import {
   Printer,
   BadgeCheck,
   Scale,
+  Lock,
+  Heart,
+  Save,
+  RotateCcw,
+  Sliders,
+  CheckCheck,
 } from "lucide-react";
 
 export default function Docs() {
   const [activeTab, setActiveTab] = useState("wage_types");
   const [activeWageSubTab, setActiveWageSubTab] = useState("piece_rate");
+  const [activeStatutorySubTab, setActiveStatutorySubTab] = useState("epf_vpf");
   const [searchTerm, setSearchTerm] = useState("");
 
   const tabs = [
@@ -1499,255 +1506,601 @@ export default function Docs() {
       )}
 
       {/* ========================================================================= */}
-      {/* TAB 2: STATUTORY ACTS & COMPLIANCE RULES (DETAILED LEGAL REFERENCE) */}
+      {/* TAB 2: STATUTORY ACTS & COMPLIANCE RULES (INTERACTIVE SUB-TABS & SYSTEM FLOW) */}
       {/* ========================================================================= */}
       {activeTab === "statutory_compliance" && (
         <div className="space-y-6 text-xs leading-relaxed">
           {/* Statutory Header */}
-          <div className="bg-zinc-900/60 border border-zinc-800/80 p-5 rounded-2xl space-y-2">
-            <h3 className="text-sm font-bold text-zinc-100 flex items-center gap-2">
-              <ShieldCheck className="size-4 text-indigo-400" />
-              Comprehensive Indian Labour Laws & Statutory Acts Reference
-            </h3>
-            <p className="text-zinc-300">
-              India has strict central and state labour codes. Employers who fail to comply face severe penalties, interest charges, and legal notices. Here is the complete statutory roadmap:
-            </p>
-          </div>
-
-          {/* Act 1 to 8 Cards */}
-          <div className="space-y-4">
-            {/* 1. EPFO */}
-            <div className="p-5 bg-zinc-900/60 border border-zinc-800/80 rounded-2xl space-y-3">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
-                <div>
-                  <h4 className="font-bold text-sm text-indigo-300 flex items-center gap-2">
-                    <span className="p-1.5 bg-indigo-950 rounded-lg border border-indigo-800 font-mono">01</span>
-                    Employees' Provident Funds & Miscellaneous Provisions Act, 1952 (EPFO)
-                  </h4>
-                  <span className="text-[11px] text-zinc-400">Governed by Ministry of Labour & Employment, Govt of India</span>
-                </div>
-                <span className="px-2.5 py-1 bg-indigo-950 text-indigo-300 border border-indigo-800 rounded-lg font-mono font-bold">
-                  12% (Employee) + 12% (Employer)
-                </span>
+          <div className="bg-zinc-900/60 border border-zinc-800/80 p-5 rounded-2xl space-y-3">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+              <div>
+                <h3 className="text-sm font-bold text-zinc-100 flex items-center gap-2">
+                  <ShieldCheck className="size-4 text-indigo-400" />
+                  Indian Statutory Compliance & Labour Laws Reference
+                </h3>
+                <p className="text-zinc-400 text-[11px] mt-0.5">
+                  Understand real-world legal mandates and exactly how Hisaab Payroll automates every rule.
+                </p>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
-                <div className="space-y-1.5">
-                  <strong className="text-zinc-100 block">Applicability & Threshold:</strong>
-                  <p className="text-zinc-400 text-[11px]">
-                    Mandatory for any business employing <strong>20 or more persons</strong>. Mandatory for employees whose Basic + DA is up to <strong>₹15,000/month</strong>. Employees earning above ₹15,000 can be capped at ₹15,000 or contribute on actual wages voluntarily.
-                  </p>
-                </div>
-
-                <div className="space-y-1.5">
-                  <strong className="text-zinc-100 block">Official EPFO Account Splitup:</strong>
-                  <ul className="text-zinc-400 text-[11px] space-y-1">
-                    <li>• <strong>A/C 1 (EPF Employee):</strong> 12% deducted from salary (Max ₹1,800/mo)</li>
-                    <li>• <strong>A/C 10 (EPS Pension Employer):</strong> 8.33% of wage (Max ₹1,250/mo)</li>
-                    <li>• <strong>A/C 1 (EPF Employer):</strong> 3.67% of wage (12% − 8.33% EPS = Max ₹550/mo)</li>
-                    <li>• <strong>A/C 21 (EDLI Life Insurance):</strong> 0.50% of wage (Max ₹75/mo)</li>
-                    <li>• <strong>A/C 2 (EPF Admin Fee):</strong> 0.50% of wage (Min ₹500/month per company)</li>
-                  </ul>
-                </div>
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-1 bg-emerald-950/80 text-emerald-300 border border-emerald-800/60 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1">
+                  <Lock className="size-3" />
+                  2-Tier Architecture Active
+                </span>
               </div>
             </div>
 
-            {/* 2. ESIC */}
-            <div className="p-5 bg-zinc-900/60 border border-zinc-800/80 rounded-2xl space-y-3">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
-                <div>
-                  <h4 className="font-bold text-sm text-cyan-300 flex items-center gap-2">
-                    <span className="p-1.5 bg-cyan-950 rounded-lg border border-cyan-800 font-mono">02</span>
-                    Employees' State Insurance Act, 1948 (ESIC)
-                  </h4>
-                  <span className="text-[11px] text-zinc-400">Autonomous body under Ministry of Labour & Employment</span>
-                </div>
-                <span className="px-2.5 py-1 bg-cyan-950 text-cyan-300 border border-cyan-800 rounded-lg font-mono font-bold">
-                  0.75% (Employee) + 3.25% (Employer)
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
-                <div className="space-y-1.5">
-                  <strong className="text-zinc-100 block">Eligibility & Wage Ceiling:</strong>
-                  <p className="text-zinc-400 text-[11px]">
-                    Applicable to non-seasonal factories/firms with 10+ employees. Covers all employees with <strong>Total Monthly Gross Wage ≤ ₹21,000</strong> (₹25,000 for employees with physical disabilities).
-                  </p>
-                </div>
-
-                <div className="space-y-1.5">
-                  <strong className="text-zinc-100 block">6-Month Contribution Period Rule:</strong>
-                  <p className="text-zinc-400 text-[11px]">
-                    ESIC operates in 2 contribution cycles: <strong>April to September</strong> and <strong>October to March</strong>. If an employee's salary increases above ₹21,000 mid-cycle, ESIC deduction continues till the end of that 6-month contribution cycle.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* 3. Payment of Gratuity Act */}
-            <div className="p-5 bg-zinc-900/60 border border-zinc-800/80 rounded-2xl space-y-3">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
-                <div>
-                  <h4 className="font-bold text-sm text-purple-300 flex items-center gap-2">
-                    <span className="p-1.5 bg-purple-950 rounded-lg border border-purple-800 font-mono">03</span>
-                    Payment of Gratuity Act, 1972
-                  </h4>
-                  <span className="text-[11px] text-zinc-400">Statutory retirement lumpsum benefit</span>
-                </div>
-                <span className="px-2.5 py-1 bg-purple-950 text-purple-300 border border-purple-800 rounded-lg font-mono font-bold">
-                  Formula: (15 × Last Basic × Years) / 26
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
-                <div className="space-y-1.5">
-                  <strong className="text-zinc-100 block">5-Year Continuous Service Rule:</strong>
-                  <p className="text-zinc-400 text-[11px]">
-                    Gratuity becomes payable when an employee completes <strong>5 or more continuous years of service</strong> with the employer. (The 5-year condition is waived in case of death or permanent disablement).
-                  </p>
-                </div>
-
-                <div className="space-y-1.5">
-                  <strong className="text-zinc-100 block">Monthly CTC Accrual & ₹20 Lakh Cap:</strong>
-                  <p className="text-zinc-400 text-[11px]">
-                    15 days wages per year based on a 26-day working month: <code className="text-purple-300">15 ÷ (26 × 12) = 4.81% of Basic</code>. Maximum statutory tax-exempt gratuity payout is capped at <strong>₹20,00,000</strong> (Section 10(10)).
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* 4. Professional Tax */}
-            <div className="p-5 bg-zinc-900/60 border border-zinc-800/80 rounded-2xl space-y-3">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
-                <div>
-                  <h4 className="font-bold text-sm text-amber-300 flex items-center gap-2">
-                    <span className="p-1.5 bg-amber-950 rounded-lg border border-amber-800 font-mono">04</span>
-                    State Professional Tax (PT) Acts
-                  </h4>
-                  <span className="text-[11px] text-zinc-400">Empowered by Article 276 of the Indian Constitution</span>
-                </div>
-                <span className="px-2.5 py-1 bg-amber-950 text-amber-300 border border-amber-800 rounded-lg font-mono font-bold">
-                  Max ₹2,500 / year Limit
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-zinc-300">
-                <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 space-y-1">
-                  <strong className="text-amber-300 text-xs">Karnataka PT:</strong>
-                  <p className="text-zinc-400 text-[11px]">
-                    • Gross &lt; ₹15,000 = ₹0<br />
-                    • Gross $\ge$ ₹15,000 = <strong>₹200/month</strong>
-                  </p>
-                </div>
-
-                <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 space-y-1">
-                  <strong className="text-amber-300 text-xs">Maharashtra PT:</strong>
-                  <p className="text-zinc-400 text-[11px]">
-                    • Gross &lt; ₹7,500 = ₹0<br />
-                    • Men &gt; ₹10k = <strong>₹200/mo (₹300 in Feb)</strong><br />
-                    • Women $\le$ ₹25,000 = Exempt
-                  </p>
-                </div>
-
-                <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 space-y-1">
-                  <strong className="text-amber-300 text-xs">Tamil Nadu PT:</strong>
-                  <p className="text-zinc-400 text-[11px]">
-                    Half-yearly deduction in Sept & March:<br />
-                    • ₹21k-₹30k = ₹135<br />
-                    • ₹75k+ = <strong>₹1,250 half-yearly</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* 5. Payment of Bonus Act */}
-            <div className="p-5 bg-zinc-900/60 border border-zinc-800/80 rounded-2xl space-y-3">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
-                <div>
-                  <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
-                    <span className="p-1.5 bg-emerald-950 rounded-lg border border-emerald-800 font-mono">05</span>
-                    Payment of Bonus Act, 1965
-                  </h4>
-                  <span className="text-[11px] text-zinc-400">Statutory Annual Profit-Sharing Bonus</span>
-                </div>
-                <span className="px-2.5 py-1 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded-lg font-mono font-bold">
-                  8.33% to 20% on ₹7,000 Ceiling
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
-                <div className="space-y-1.5">
-                  <strong className="text-zinc-100 block">Eligibility & Minimum Rate:</strong>
-                  <p className="text-zinc-400 text-[11px]">
-                    Applicable to establishments with 20+ workers. Eligible employees earn <strong>Salary $\le$ ₹21,000/month</strong>. Minimum statutory bonus is <strong>8.33%</strong> of annual Basic (equivalent to 1 full month salary).
-                  </p>
-                </div>
-
-                <div className="space-y-1.5">
-                  <strong className="text-zinc-100 block">Calculation Ceiling:</strong>
-                  <p className="text-zinc-400 text-[11px]">
-                    Bonus is computed on <strong>₹7,000/month or state minimum wage</strong> (whichever is higher). Minimum bonus payable is <code className="text-emerald-300">₹7,000 × 12 × 8.33% = ₹6,997/year</code>.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* 6. Income Tax Act 1961 - Section 192 (TDS) */}
-            <div className="p-5 bg-zinc-900/60 border border-zinc-800/80 rounded-2xl space-y-3">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
-                <div>
-                  <h4 className="font-bold text-sm text-rose-300 flex items-center gap-2">
-                    <span className="p-1.5 bg-rose-950 rounded-lg border border-rose-800 font-mono">06</span>
-                    Income Tax Act, 1961 - Section 192 (Salaries TDS)
-                  </h4>
-                  <span className="text-[11px] text-zinc-400">CBDT Annual Tax Withholding Obligations</span>
-                </div>
-                <span className="px-2.5 py-1 bg-rose-950 text-rose-300 border border-rose-800 rounded-lg font-mono font-bold">
-                  New Regime 115BAC vs Old Regime
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
-                <div className="space-y-1.5">
-                  <strong className="text-zinc-100 block">Default New Tax Regime (Section 115BAC):</strong>
-                  <ul className="text-zinc-400 text-[11px] space-y-1">
-                    <li>• Standard Deduction: <strong>₹75,000</strong></li>
-                    <li>• Zero Tax on total income up to <strong>₹7,75,000</strong> (with Sec 87A rebate)</li>
-                    <li>• Simplified tax slabs, no 80C/80D paperwork required</li>
-                  </ul>
-                </div>
-
-                <div className="space-y-1.5">
-                  <strong className="text-zinc-100 block">Optional Old Tax Regime:</strong>
-                  <ul className="text-zinc-400 text-[11px] space-y-1">
-                    <li>• Standard Deduction: <strong>₹50,000</strong></li>
-                    <li>• Section 80C deductions up to ₹1,50,000 (EPF, ELSS, PPF, Life Insurance)</li>
-                    <li>• Section 10(13A) HRA exemption + Section 80D Health Insurance deduction</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* 7. Factories Act & Overtime */}
-            <div className="p-5 bg-zinc-900/60 border border-zinc-800/80 rounded-2xl space-y-3">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
-                <div>
-                  <h4 className="font-bold text-sm text-blue-300 flex items-center gap-2">
-                    <span className="p-1.5 bg-blue-950 rounded-lg border border-blue-800 font-mono">07</span>
-                    Factories Act, 1948 - Section 59 (Overtime Wages)
-                  </h4>
-                  <span className="text-[11px] text-zinc-400">Working hours, rest intervals & overtime limits</span>
-                </div>
-                <span className="px-2.5 py-1 bg-blue-950 text-blue-300 border border-blue-800 rounded-lg font-mono font-bold">
-                  2.0x Double Rate for Overtime
-                </span>
-              </div>
-
-              <p className="text-zinc-300 text-[11px]">
-                Under Section 59, any employee working more than <strong>9 hours in a day</strong> or more than <strong>48 hours in a week</strong> is legally entitled to overtime wages at <strong>twice the ordinary rate of wages (2.0x Double Rate)</strong>.
-              </p>
+            {/* Statutory Sub-Tabs Switcher */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2">
+              {[
+                { id: "epf_vpf", label: "EPF & VPF (Provident Fund)", icon: Landmark, badge: "12% + 12%", act: "EPF Act 1952" },
+                { id: "esic_medical", label: "ESIC (Health Insurance)", icon: Shield, badge: "0.75% / 3.25%", act: "ESI Act 1948" },
+                { id: "professional_tax", label: "Professional Tax (PT)", icon: Building, badge: "State Slabs", act: "State PT Acts" },
+                { id: "gratuity", label: "Gratuity Provision & Payout", icon: Award, badge: "15/26 (4.81%)", act: "Gratuity Act 1972" },
+                { id: "statutory_bonus", label: "Statutory Annual Bonus", icon: Gift, badge: "8.33% - 20%", act: "Bonus Act 1965" },
+                { id: "tds_tax", label: "Income Tax TDS (Sec 192)", icon: FileText, badge: "115BAC Slabs", act: "IT Act 1961" },
+                { id: "lwf_welfare", label: "Labour Welfare Fund (LWF)", icon: HeartPulse, badge: "State Welfare", act: "State LWF Acts" },
+                { id: "corporate_nps", label: "Corporate NPS (Sec 80CCD)", icon: Scale, badge: "Up to 10%", act: "PFRDA Act" },
+              ].map((sub) => {
+                const SubIcon = sub.icon;
+                const isSubActive = (activeStatutorySubTab || "epf_vpf") === sub.id;
+                return (
+                  <button
+                    key={sub.id}
+                    onClick={() => setActiveStatutorySubTab(sub.id)}
+                    className={`p-3 rounded-xl border text-left transition-all flex flex-col justify-between gap-2 ${
+                      isSubActive
+                        ? "bg-indigo-950/70 border-indigo-500 text-white shadow-lg shadow-indigo-950/50"
+                        : "bg-zinc-950/60 border-zinc-800/80 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className={`p-1.5 rounded-lg ${isSubActive ? "bg-indigo-600 text-white" : "bg-zinc-900 text-zinc-400"}`}>
+                        <SubIcon className="size-4" />
+                      </div>
+                      <span className={`text-[9px] px-1.5 py-0.5 rounded font-mono font-semibold ${
+                        isSubActive ? "bg-indigo-900/80 text-indigo-200" : "bg-zinc-900 text-zinc-500"
+                      }`}>
+                        {sub.badge}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="font-bold text-xs tracking-tight block">{sub.label}</span>
+                      <span className="text-[10px] text-zinc-500 font-mono block">{sub.act}</span>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
+
+          {/* ------------------------------------------------------------------- */}
+          {/* SUB-TAB 1: EPF & VPF */}
+          {/* ------------------------------------------------------------------- */}
+          {(activeStatutorySubTab === "epf_vpf" || !activeStatutorySubTab) && (
+            <div className="space-y-5">
+              {/* Card 1: Legal Concept */}
+              <div className="p-5 bg-zinc-900/60 border border-indigo-500/30 rounded-2xl space-y-3">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
+                  <div>
+                    <h4 className="font-bold text-sm text-indigo-300 flex items-center gap-2">
+                      <Landmark className="size-4" />
+                      1. Legal Concept & Statutory Mandate: Employees' Provident Funds Act, 1952
+                    </h4>
+                    <span className="text-[11px] text-zinc-400">
+                      Central government mandatory social security and retirement savings scheme managed by EPFO.
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 bg-indigo-950 text-indigo-300 border border-indigo-800 rounded-lg font-mono font-bold">
+                    Statutory Rate: 12% Employee + 12% Employer
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
+                  <div className="space-y-2">
+                    <strong className="text-zinc-100 block">Applicability & Official Ceilings:</strong>
+                    <ul className="text-zinc-400 text-[11px] space-y-1">
+                      <li>• <strong>Applicability:</strong> Mandatory for all establishments with <strong>20 or more employees</strong>.</li>
+                      <li>• <strong>Statutory Wage Ceiling:</strong> Compulsory for employees earning Basic + DA up to <strong>₹15,000/month</strong>.</li>
+                      <li>• <strong>Interest Rate:</strong> Safe government-guaranteed interest (~8.25% p.a.) compounded annually.</li>
+                      <li>• <strong>VPF (Voluntary PF):</strong> Employee can contribute &gt; 12% voluntarily to save more tax-free interest.</li>
+                    </ul>
+                  </div>
+
+                  <div className="space-y-2">
+                    <strong className="text-zinc-100 block">Official EPFO Account Splitup:</strong>
+                    <div className="grid grid-cols-2 gap-2 text-[10px] font-mono">
+                      <div className="p-2 bg-zinc-950 rounded-lg border border-zinc-800">
+                        <span className="text-zinc-500 block">A/C 1 (Employee EPF)</span>
+                        <strong className="text-emerald-400">12.0% (Max ₹1,800)</strong>
+                      </div>
+                      <div className="p-2 bg-zinc-950 rounded-lg border border-zinc-800">
+                        <span className="text-zinc-500 block">A/C 10 (Employer EPS)</span>
+                        <strong className="text-blue-400">8.33% (Max ₹1,250)</strong>
+                      </div>
+                      <div className="p-2 bg-zinc-950 rounded-lg border border-zinc-800">
+                        <span className="text-zinc-500 block">A/C 1 (Employer EPF)</span>
+                        <strong className="text-indigo-400">3.67% (Max ₹550)</strong>
+                      </div>
+                      <div className="p-2 bg-zinc-950 rounded-lg border border-zinc-800">
+                        <span className="text-zinc-500 block">A/C 21 & A/C 2 (EDLI+Admin)</span>
+                        <strong className="text-amber-400">0.50% + 0.50% = 1.0%</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2: System Implementation */}
+              <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
+                <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
+                  <CheckCircle2 className="size-4" />
+                  2. System Implementation & Calculation Flow
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-zinc-300">
+                  <div className="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800/80 space-y-1">
+                    <strong className="text-zinc-200 text-xs">A. Tier-1 Master Law Lock</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      The 12% deduction percentage and ₹15,000 ceiling are locked centrally in the master engine. No manual rate tampering is possible.
+                    </p>
+                  </div>
+                  <div className="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800/80 space-y-1">
+                    <strong className="text-zinc-200 text-xs">B. Firm Policy Capping Choice</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      In <strong>Statutory Components</strong> page, company configures whether to cap at ₹15,000 (₹1,800/mo max) or compute on full actual Basic wage.
+                    </p>
+                  </div>
+                  <div className="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800/80 space-y-1">
+                    <strong className="text-zinc-200 text-xs">C. Automated Payroll Engine Run</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      During payroll runs, <code>payrollCalculator.js</code> evaluates pro-rated earned basic, deducts Employee PF, and posts employer EPS/EPF shares into ledger.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3: Example Walkthrough */}
+              <div className="p-4 bg-indigo-950/20 border border-indigo-800/40 rounded-xl space-y-2">
+                <span className="font-bold text-xs text-indigo-300 uppercase tracking-wider block font-mono">
+                  📊 Real-World Calculation Walkthrough (Example: Basic = ₹30,000 with ₹15k Capping)
+                </span>
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 font-mono text-[11px]">
+                  <div className="p-2 bg-zinc-950 rounded border border-zinc-800">
+                    <span className="text-zinc-500 block text-[10px]">PF Wage Base:</span>
+                    <strong className="text-zinc-200">₹ 15,000.00</strong>
+                  </div>
+                  <div className="p-2 bg-zinc-950 rounded border border-zinc-800">
+                    <span className="text-zinc-500 block text-[10px]">Employee EPF (12%):</span>
+                    <strong className="text-emerald-400">₹ 1,800.00</strong>
+                  </div>
+                  <div className="p-2 bg-zinc-950 rounded border border-zinc-800">
+                    <span className="text-zinc-500 block text-[10px]">Employer EPS (8.33%):</span>
+                    <strong className="text-blue-400">₹ 1,250.00</strong>
+                  </div>
+                  <div className="p-2 bg-zinc-950 rounded border border-zinc-800">
+                    <span className="text-zinc-500 block text-[10px]">Employer EPF (3.67%):</span>
+                    <strong className="text-indigo-400">₹ 550.00</strong>
+                  </div>
+                  <div className="p-2 bg-zinc-950 rounded border border-zinc-800">
+                    <span className="text-zinc-500 block text-[10px]">Admin + EDLI (1%):</span>
+                    <strong className="text-amber-400">₹ 150.00</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ------------------------------------------------------------------- */}
+          {/* SUB-TAB 2: ESIC MEDICAL HEALTH COVER */}
+          {/* ------------------------------------------------------------------- */}
+          {activeStatutorySubTab === "esic_medical" && (
+            <div className="space-y-5">
+              <div className="p-5 bg-zinc-900/60 border border-cyan-500/30 rounded-2xl space-y-3">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
+                  <div>
+                    <h4 className="font-bold text-sm text-cyan-300 flex items-center gap-2">
+                      <Shield className="size-4" />
+                      1. Legal Concept & Statutory Mandate: Employees' State Insurance Act, 1948
+                    </h4>
+                    <span className="text-[11px] text-zinc-400">
+                      Comprehensive healthcare and social security for blue-collar and factory workers.
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 bg-cyan-950 text-cyan-300 border border-cyan-800 rounded-lg font-mono font-bold">
+                    0.75% (Employee) + 3.25% (Employer)
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
+                  <div className="space-y-1.5">
+                    <strong className="text-zinc-100 block">Eligibility & ₹21,000 Wage Limit:</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Applicable to establishments with 10+ employees. Covers all employees with <strong>Monthly Gross Salary $\le$ ₹21,000</strong> (₹25,000 for persons with disabilities).
+                    </p>
+                  </div>
+                  <div className="space-y-1.5">
+                    <strong className="text-zinc-100 block">6-Month Contribution Cycle Rule:</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Runs in two 6-month cycles (April–Sept & Oct–March). If salary increases above ₹21k mid-cycle, ESIC deduction continues till that cycle ends.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
+                <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
+                  <CheckCircle2 className="size-4" />
+                  2. System Implementation & Calculation Flow
+                </h4>
+                <p className="text-zinc-300 text-xs">
+                  In <code>payrollCalculator.js</code>, when calculating wages for Daily Wage and Piece Rate workers, the engine checks <code>earnedGrossAcc &le; 21000</code>:
+                </p>
+                <div className="p-3 bg-zinc-900 font-mono text-[11px] rounded-xl border border-zinc-800 text-zinc-300 space-y-1">
+                  <div>• <code>Employee ESIC = Math.ceil(earnedGrossAcc * 0.0075)</code> (Deducted from Take-Home)</div>
+                  <div>• <code>Employer ESIC = Math.ceil(earnedGrossAcc * 0.0325)</code> (Added to Company CTC Cost)</div>
+                  <div>• If Gross &gt; ₹21,000 $\to$ ESIC automatically sets to ₹0.</div>
+                </div>
+              </div>
+
+              <div className="p-4 bg-cyan-950/20 border border-cyan-800/40 rounded-xl space-y-2 font-mono text-[11px]">
+                <span className="font-bold text-xs text-cyan-300 uppercase tracking-wider block">
+                  📊 Real Example: Daily Worker (Ramesh Kumar - Gross ₹18,200)
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <div className="p-2 bg-zinc-950 rounded border border-zinc-800">
+                    <span className="text-zinc-500 block text-[10px]">Monthly Gross:</span>
+                    <strong className="text-zinc-200">₹ 18,200.00</strong>
+                  </div>
+                  <div className="p-2 bg-zinc-950 rounded border border-zinc-800">
+                    <span className="text-zinc-500 block text-[10px]">Employee ESIC (0.75%):</span>
+                    <strong className="text-emerald-400">₹ 137.00</strong>
+                  </div>
+                  <div className="p-2 bg-zinc-950 rounded border border-zinc-800">
+                    <span className="text-zinc-500 block text-[10px]">Employer ESIC (3.25%):</span>
+                    <strong className="text-cyan-400">₹ 592.00</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ------------------------------------------------------------------- */}
+          {/* SUB-TAB 3: PROFESSIONAL TAX (PT) */}
+          {/* ------------------------------------------------------------------- */}
+          {activeStatutorySubTab === "professional_tax" && (
+            <div className="space-y-5">
+              <div className="p-5 bg-zinc-900/60 border border-amber-500/30 rounded-2xl space-y-3">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
+                  <div>
+                    <h4 className="font-bold text-sm text-amber-300 flex items-center gap-2">
+                      <Building className="size-4" />
+                      1. Legal Concept & Statutory Mandate: State Professional Tax (PT) Acts
+                    </h4>
+                    <span className="text-[11px] text-zinc-400">
+                      State-level tax on salaried individuals under Article 276 of the Indian Constitution.
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 bg-amber-950 text-amber-300 border border-amber-800 rounded-lg font-mono font-bold">
+                    Statutory Cap: Max ₹2,500 / year
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-zinc-300">
+                  <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 space-y-1">
+                    <strong className="text-amber-300 text-xs">Karnataka:</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Gross &lt; ₹15,000 = ₹0.<br />
+                      Gross $\ge$ ₹15,000 = <strong>₹200/month</strong>.
+                    </p>
+                  </div>
+                  <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 space-y-1">
+                    <strong className="text-amber-300 text-xs">Maharashtra:</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Men &gt; ₹10k = <strong>₹200/mo (₹300 in Feb)</strong>.<br />
+                      Women earning $\le$ ₹25k exempt.
+                    </p>
+                  </div>
+                  <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 space-y-1">
+                    <strong className="text-amber-300 text-xs">Tamil Nadu:</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Half-yearly deduction in Sep & Mar.<br />
+                      Gross &gt; ₹75k = <strong>₹1,250 half-yearly</strong>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
+                <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
+                  <CheckCircle2 className="size-4" />
+                  2. System Implementation & Calculation Flow
+                </h4>
+                <p className="text-zinc-300 text-xs">
+                  The system stores <code>MASTER_STATE_PT_SLABS</code> in <code>StatutoryComponents.jsx</code>. When payroll processes an employee, it inspects their work location state (e.g. Karnataka) and monthly gross earnings, automatically applying the correct monthly slab.
+                </p>
+              </div>
+
+              <div className="p-4 bg-amber-950/20 border border-amber-800/40 rounded-xl space-y-2 font-mono text-[11px]">
+                <span className="font-bold text-xs text-amber-300 uppercase tracking-wider block">
+                  📊 Real Example: Rahul Sharma (Bengaluru, Karnataka)
+                </span>
+                <p className="text-zinc-400">
+                  Monthly Gross = ₹96,333 $\ge$ ₹15,000 threshold $\to$ Automated Deduction = <strong className="text-emerald-400">₹200.00 / month</strong>.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* ------------------------------------------------------------------- */}
+          {/* SUB-TAB 4: GRATUITY PROVISION & PAYOUT */}
+          {/* ------------------------------------------------------------------- */}
+          {activeStatutorySubTab === "gratuity" && (
+            <div className="space-y-5">
+              <div className="p-5 bg-zinc-900/60 border border-purple-500/30 rounded-2xl space-y-3">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
+                  <div>
+                    <h4 className="font-bold text-sm text-purple-300 flex items-center gap-2">
+                      <Award className="size-4" />
+                      1. Legal Concept & Statutory Mandate: Payment of Gratuity Act, 1972
+                    </h4>
+                    <span className="text-[11px] text-zinc-400">
+                      Statutory terminal retirement benefit for 5+ years of continuous service.
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 bg-purple-950 text-purple-300 border border-purple-800 rounded-lg font-mono font-bold">
+                    Formula: (15 × Last Basic × Years) ÷ 26
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
+                  <div className="space-y-1.5">
+                    <strong className="text-zinc-100 block">5-Year Continuous Service Rule:</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Payable on separation (resignation, retirement, or termination) after completing 5 continuous years. Waived in case of death or permanent disability.
+                    </p>
+                  </div>
+                  <div className="space-y-1.5">
+                    <strong className="text-zinc-100 block">Monthly CTC Provisioning:</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      15 days wages per year based on a 26-day working month: <code className="text-purple-300">15 ÷ (26 × 12) = 4.81% of Basic</code>. Tax exempt up to <strong>₹20,00,000</strong> (Sec 10(10)).
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
+                <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
+                  <CheckCircle2 className="size-4" />
+                  2. System Implementation & Calculation Flow
+                </h4>
+                <p className="text-zinc-300 text-xs">
+                  In <code>salaryCalculator.js</code> and <code>payrollCalculator.js</code>, Gratuity is treated as an <strong>Employer Contribution Component (COMP_GRATUITY)</strong>:
+                </p>
+                <div className="p-3 bg-zinc-900 font-mono text-[11px] rounded-xl border border-zinc-800 text-zinc-300">
+                  <code>Employer Gratuity Provision = Math.round((earnedBasic * 4.81) / 100)</code>
+                </div>
+                <p className="text-zinc-400 text-[11px]">
+                  It is automatically added to the company's monthly CTC cost without reducing the employee's take-home salary.
+                </p>
+              </div>
+
+              <div className="p-4 bg-purple-950/20 border border-purple-800/40 rounded-xl space-y-2 font-mono text-[11px]">
+                <span className="font-bold text-xs text-purple-300 uppercase tracking-wider block">
+                  📊 Real Example: Basic Salary ₹50,000/mo
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <div className="p-2 bg-zinc-950 rounded border border-zinc-800">
+                    <span className="text-zinc-500 block text-[10px]">Monthly CTC Provision (4.81%):</span>
+                    <strong className="text-purple-300">₹ 2,405.00 / month</strong>
+                  </div>
+                  <div className="p-2 bg-zinc-950 rounded border border-zinc-800">
+                    <span className="text-zinc-500 block text-[10px]">Final Payout after 6 Years:</span>
+                    <strong className="text-emerald-400">₹ 1,73,077.00 (Tax Free)</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ------------------------------------------------------------------- */}
+          {/* SUB-TAB 5: STATUTORY ANNUAL BONUS */}
+          {/* ------------------------------------------------------------------- */}
+          {activeStatutorySubTab === "statutory_bonus" && (
+            <div className="space-y-5">
+              <div className="p-5 bg-zinc-900/60 border border-emerald-500/30 rounded-2xl space-y-3">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
+                  <div>
+                    <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
+                      <Gift className="size-4" />
+                      1. Legal Concept & Statutory Mandate: Payment of Bonus Act, 1965
+                    </h4>
+                    <span className="text-[11px] text-zinc-400">
+                      Mandatory annual profit-sharing bonus for establishments with 20+ workers.
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded-lg font-mono font-bold">
+                    8.33% to 20% on ₹7,000 Base
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
+                  <div className="space-y-1.5">
+                    <strong className="text-zinc-100 block">Eligibility & Calculation Ceiling:</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Employees with monthly salary $\le$ <strong>₹21,000</strong>. Bonus is computed on <strong>₹7,000/month or State Minimum Wage</strong> (whichever is higher).
+                    </p>
+                  </div>
+                  <div className="space-y-1.5">
+                    <strong className="text-zinc-100 block">Minimum Guaranteed Bonus:</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Minimum <strong>8.33%</strong> of annual earnings (equivalent to 1 month full basic wage): <code className="text-emerald-300">₹7,000 × 12 × 8.33% = ₹6,997/year</code>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
+                <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
+                  <CheckCircle2 className="size-4" />
+                  2. System Implementation & Calculation Flow
+                </h4>
+                <p className="text-zinc-300 text-xs">
+                  In <code>Incentives & Bonuses</code> page, HR can dispatch festive (Diwali/Puja) statutory bonuses. The engine verifies eligibility and disburses it under component <code>COMP_BONUS</code> during the selected payroll run.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* ------------------------------------------------------------------- */}
+          {/* SUB-TAB 6: INCOME TAX TDS (SECTION 192) */}
+          {/* ------------------------------------------------------------------- */}
+          {activeStatutorySubTab === "tds_tax" && (
+            <div className="space-y-5">
+              <div className="p-5 bg-zinc-900/60 border border-rose-500/30 rounded-2xl space-y-3">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
+                  <div>
+                    <h4 className="font-bold text-sm text-rose-300 flex items-center gap-2">
+                      <FileText className="size-4" />
+                      1. Legal Concept & Statutory Mandate: Income Tax Act, 1961 - Section 192 (Salaries TDS)
+                    </h4>
+                    <span className="text-[11px] text-zinc-400">
+                      CBDT monthly tax withholding obligation on projected annual salary income.
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 bg-rose-950 text-rose-300 border border-rose-800 rounded-lg font-mono font-bold">
+                    Default: New Regime 115BAC (₹75k Std Ded)
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
+                  <div className="space-y-1.5">
+                    <strong className="text-zinc-100 block">New Tax Regime (Default):</strong>
+                    <ul className="text-zinc-400 text-[11px] space-y-1">
+                      <li>• Standard Deduction: <strong>₹75,000</strong></li>
+                      <li>• Zero Tax up to <strong>₹7,75,000</strong> (Sec 87A rebate)</li>
+                      <li>• Slabs: 0-3L (0%), 3-7L (5%), 7-10L (10%), 10-12L (15%), 12-15L (20%), &gt;15L (30%)</li>
+                    </ul>
+                  </div>
+                  <div className="space-y-1.5">
+                    <strong className="text-zinc-100 block">Old Tax Regime (Optional):</strong>
+                    <ul className="text-zinc-400 text-[11px] space-y-1">
+                      <li>• Standard Deduction: ₹50,000</li>
+                      <li>• Sec 80C exemptions up to ₹1,50,000 (PF, ELSS, PPF)</li>
+                      <li>• Sec 10(13A) HRA exemption + Sec 80D Health Insurance</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
+                <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
+                  <CheckCircle2 className="size-4" />
+                  2. System Implementation & Calculation Flow
+                </h4>
+                <p className="text-zinc-300 text-xs">
+                  In <code>EmployeeSalaries.jsx</code>, each employee has a <code>tdsMonthly</code> field and <code>taxRegime</code> choice. The payroll engine deducts this exact monthly tax installment as <code>COMP_TDS</code> and tracks cumulative annual deductions for Form 16 generation.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* ------------------------------------------------------------------- */}
+          {/* SUB-TAB 7: LABOUR WELFARE FUND (LWF) */}
+          {/* ------------------------------------------------------------------- */}
+          {activeStatutorySubTab === "lwf_welfare" && (
+            <div className="space-y-5">
+              <div className="p-5 bg-zinc-900/60 border border-pink-500/30 rounded-2xl space-y-3">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
+                  <div>
+                    <h4 className="font-bold text-sm text-pink-300 flex items-center gap-2">
+                      <HeartPulse className="size-4" />
+                      1. Legal Concept & Statutory Mandate: State Labour Welfare Fund (LWF) Acts
+                    </h4>
+                    <span className="text-[11px] text-zinc-400">
+                      State statutory welfare fund for worker health assistance, scholarships, and recreation.
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 bg-pink-950 text-pink-300 border border-pink-800 rounded-lg font-mono font-bold">
+                    Bi-Annual / Annual State Deduction
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-zinc-300">
+                  <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 space-y-1">
+                    <strong className="text-pink-300 text-xs">Karnataka LWF:</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Annual deduction in December: <strong>Employee ₹20 + Employer ₹40</strong> (Total ₹60/year).
+                    </p>
+                  </div>
+                  <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 space-y-1">
+                    <strong className="text-pink-300 text-xs">Maharashtra LWF:</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Deducted half-yearly in June & December: <strong>Employee ₹12 + Employer ₹36</strong>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
+                <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
+                  <CheckCircle2 className="size-4" />
+                  2. System Implementation & Calculation Flow
+                </h4>
+                <p className="text-zinc-300 text-xs">
+                  Configured in <code>StatutoryComponents.jsx</code> (LWF Tab) and automatically triggered during June/December payroll cycles based on the employee's work state.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* ------------------------------------------------------------------- */}
+          {/* SUB-TAB 8: CORPORATE NPS */}
+          {/* ------------------------------------------------------------------- */}
+          {activeStatutorySubTab === "corporate_nps" && (
+            <div className="space-y-5">
+              <div className="p-5 bg-zinc-900/60 border border-blue-500/30 rounded-2xl space-y-3">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-zinc-800">
+                  <div>
+                    <h4 className="font-bold text-sm text-blue-300 flex items-center gap-2">
+                      <Scale className="size-4" />
+                      1. Legal Concept & Statutory Mandate: Corporate NPS (Section 80CCD(2))
+                    </h4>
+                    <span className="text-[11px] text-zinc-400">
+                      PFRDA regulated pension scheme with 100% tax deduction on employer contribution.
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-1 bg-blue-950 text-blue-300 border border-blue-800 rounded-lg font-mono font-bold">
+                    Up to 10% of Basic + DA (Tax Exempt)
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
+                  <div className="space-y-1.5">
+                    <strong className="text-zinc-100 block">Section 80CCD(2) Tax Super-Benefit:</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Employer contribution up to 10% of Basic+DA is <strong>100% tax deductible</strong> beyond the ₹1.5 Lakh 80C limit in both Old and New Tax Regimes!
+                    </p>
+                  </div>
+                  <div className="space-y-1.5">
+                    <strong className="text-zinc-100 block">Direct PRAN Credit:</strong>
+                    <p className="text-zinc-400 text-[11px]">
+                      Funds are credited directly into the employee's permanent retirement account (PRAN) with choice of Equity, Corporate Bonds, and Govt Securities.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 bg-zinc-950 border border-zinc-800 rounded-2xl space-y-3">
+                <h4 className="font-bold text-sm text-emerald-300 flex items-center gap-2">
+                  <CheckCircle2 className="size-4" />
+                  2. System Implementation & Calculation Flow
+                </h4>
+                <p className="text-zinc-300 text-xs">
+                  In <code>StatutoryComponents.jsx</code> (NPS tab), company enables Corporate NPS with their Scheme ID. It is added as an Employer Contribution <code>COMP_NPS</code> in executive salary templates.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
